@@ -1,4 +1,0 @@
-Lasanha;
-Sorvete;
-Feijoada;
-Lamen.
