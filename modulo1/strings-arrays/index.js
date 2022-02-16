@@ -54,3 +54,14 @@ console.log(listaDeTarefas);
 tarefaRealizada = Number(prompt("Retire o índice da tarefa realizada: 0, 1 ou 2"));
 listaDeTarefas.splice(tarefaRealizada, 1);
 console.log(listaDeTarefas);
+
+//DESAFIO
+//1
+let fraseSplit = prompt("Digite uma frase");
+let resultado = fraseSplit.split(" ");
+console.log(resultado);
+
+//2
+array = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"];
+array.includes("Abacaxi");
+console.log(array.indexOf("Abacaxi"), array.length);
