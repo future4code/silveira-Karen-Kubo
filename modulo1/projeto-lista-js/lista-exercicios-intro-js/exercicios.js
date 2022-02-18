@@ -162,20 +162,26 @@ function checaRenovacaoRG() {
   var anoNascimento = Number(prompt('Em que ano você nasceu? (ex.: 1999)'));
   var anoEmissao = Number(prompt('Em que ano sua carteira de identidade foi emitida? (ex.: 1999)'));
   let idade = anoAtual - anoNascimento
-  let renovar = ((anoAtual - anoEmissao) % 5 === 0) && idade <= 20 || ((anoAtual - anoEmissao) % 10 === 0) && idade > 20 && idade <= 50 || ((anoAtual - anoEmissao) % 15 === 0) && idade > 50;
+  let renovar = ((anoAtual - anoEmissao) >= 5) && idade <= 20 || ((anoAtual - anoEmissao) >= 10) && idade > 20 && idade <= 50 || ((anoAtual - anoEmissao) >= 15) && idade > 50;
   
 console.log(renovar);
 };
 
 // EXERCÍCIO 14
-//function checaAnoBissexto(ano) {
+function checaAnoBissexto(ano) {
   // implemente sua lógica aqui
+  
+  let bissexto = ano % 4 === 0 && ano % 100 !== 0 || ano % 400 === 0;
+  return bissexto;
 
-
-
-//}
+}
 
 // EXERCÍCIO 15
-//function checaValidadeInscricaoLabenu() {
+function checaValidadeInscricaoLabenu() {
+let pergunta1 = prompt("Responda sim ou não: Você tem mais de 18 anos?");
+let pergunta2 = prompt("Responda sim ou não: Você possui ensino médio completo?");
+let pergunta3 = prompt("Responda sim ou não: Você possui disponibilidade exclusiva durante os horários do curso?");
 
-//}
+let inscricao = pergunta1.toLowerCase().trim() === "sim".toLowerCase().trim() && pergunta2.toLowerCase().trim() === "sim".toLowerCase().trim() && pergunta3.toLowerCase().trim() === "sim".toLowerCase().trim();
+console.log(inscricao);
+}
