@@ -93,8 +93,8 @@ function calculaIngressosEspetaculo(custo, valorIngresso) {
 // EXERCÍCIO 08
 function checaStringsMesmoTamanho(string1, string2) {
   // implemente sua lógica aqui
-    var string1 = prompt("Digite algo").trim();
-    var string2 = prompt("Digite outra coisa").trim();
+    var string1 = prompt("Digite algo para o string1").trim();
+    var string2 = prompt("Digite outra coisa para o string2").trim();
     let verifica = string1.length === string2.length;
     return verifica;
   /**string1: "ola"
@@ -109,29 +109,19 @@ string2: "abcd"*/
 // EXERCÍCIO 09
 function retornaPrimeiroElemento(array) {
     // implemente sua lógica aqui
-  var elemento1 = (prompt("Digite algo para o array"));
-  var elemento2 = (prompt("Digite algo para o array"));
-  var elemento3 = (prompt("Digite algo para o array"));
-  i = 0;
-  var array = [elemento1, elemento2, elemento3];
-
-  console.log(array[i]) 
+let guardar = array[0];
+  return(array[0]) 
 
   /**array: ["ola","abc"]
       array: ["teste","porta", "batata"]*/
   
 }
-retornaPrimeiroElemento();
+
 // EXERCÍCIO 10
 function retornaUltimoElemento(array) {
 
   // implemente sua lógica aqui
-  var elemento1 = prompt("Digite algo para o primeiro elemento");
-  var elemento2 = prompt("Digite algo para o segundo elemento");
-  var elemento3 = prompt("Digite algo para o terceiro elemento");
-  var elemento4 = prompt("Digite algo para o quarto elemento");
-  var elemento5 = prompt("Digite algo para o quinto elemento");
-  array = [elemento1, elemento2, elemento3, elemento4, elemento5];
+  
   i = array.length - 1;
   return array[i];
 
@@ -139,14 +129,10 @@ function retornaUltimoElemento(array) {
 
 // EXERCÍCIO 11
 function trocaPrimeiroEUltimo(array) {
-  var elemento1 = prompt("Digite algo para o primeiro elemento");
-  var elemento2 =prompt("Digite algo para o segundo elemento");
-  var elemento3 =prompt("Digite algo para o terceiro elemento");
-  var elemento4 = prompt("Digite algo para o quarto elemento");
-  var elemento5 =prompt("Digite algo para o quinto elemento");
-  array = [elemento1, elemento2, elemento3, elemento4, elemento5];
-  array.splice(0, 1, elemento5);
-  array.splice(4, 1, elemento1);
+  let guarda = array[0];
+  array[0] = array[array.length - 1];
+  array[array.length - 1] = guarda;
+
   return array;
   // implemente sua lógica aqui
 
@@ -155,16 +141,17 @@ function trocaPrimeiroEUltimo(array) {
 // EXERCÍCIO 12
 function checaIgualdadeDesconsiderandoCase(string1, string2) {
   // implemente sua lógica aqui
-  var string1 = prompt("Digite algo").toLowerCase();
-  var string2 = prompt("Digite algo").toLowerCase();
-  let verifica = string1 === string2;
+  
+  let verifica = string1.toUpperCase() === string2.toUpperCase();
   return verifica;
   /*string1: "Ola"
   string2: "olA
   string1: "bananinha"
   string2: "BANANINHA"
   string1: "banana"
-  string2: "BANANINHA" */
+  string2: "BANANINHA" 
+  cAsA"
+string2: "MeSA*/
 }
 
 
@@ -175,29 +162,20 @@ function checaRenovacaoRG() {
   var anoNascimento = Number(prompt('Em que ano você nasceu? (ex.: 1999)'));
   var anoEmissao = Number(prompt('Em que ano sua carteira de identidade foi emitida? (ex.: 1999)'));
   let idade = anoAtual - anoNascimento
+  let renovar = ((anoAtual - anoEmissao) % 5 === 0) && idade <= 20 || ((anoAtual - anoEmissao) % 10 === 0) && idade > 20 && idade <= 50 || ((anoAtual - anoEmissao) % 15 === 0) && idade > 50;
   
-  if (idade <= 20) {
-    return (anoAtual - anoEmissao % 5 === 0);
-    
-  }
-  if (idade > 20 && idade <= 50) {
-    return (anoAtual - anoEmissao % 10 === 0);
-    
-  }
-  if (idade > 50) {
-    return (anoAtual - anoEmissao % 15 === 0);
-  }
+console.log(renovar);
+};
 
 // EXERCÍCIO 14
-function checaAnoBissexto(ano) {
+//function checaAnoBissexto(ano) {
   // implemente sua lógica aqui
 
 
 
-}
-/*
+//}
+
 // EXERCÍCIO 15
-function checaValidadeInscricaoLabenu() {
-  // implemente sua lógica aqui
+//function checaValidadeInscricaoLabenu() {
 
-}*/
+//}
