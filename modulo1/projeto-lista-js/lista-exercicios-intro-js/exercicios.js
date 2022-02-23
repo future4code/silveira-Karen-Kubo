@@ -43,9 +43,9 @@ function imprimeIdade() {
 // EXERCÍCIO 03
 function calculaIMC(peso, altura) {
   // implemente sua lógica aqui
-  let pesoEmKg = Number(prompt('Qual o seu peso em kg? (ex.: 80)'));
-  let alturaEmM = Number(prompt('Qual sua altura em m? (ex.: 1.80)'));
-  let imc = pesoEmKg / (alturaEmM * alturaEmM);
+  //let pesoEmKg = Number(prompt('Qual o seu peso em kg? (ex.: 80)'));
+  //let alturaEmM = Number(prompt('Qual sua altura em m? (ex.: 1.80)'));
+  let imc = peso / (altura * altura);
   return imc;
   // 85 e 1.8 
   // 70 e 1.65
@@ -75,16 +75,15 @@ function imprimeTresCoresFavoritas() {
 // EXERCÍCIO 06
 function retornaStringEmMaiuscula(stringMaiuscula) {
   // implemente sua lógica aqui
-  var stringMaiuscula = prompt("Digite algo.").toUpperCase();
-  return stringMaiuscula; //oi e bAnAnA
+  let stringNova = stringMaiuscula.toUpperCase();
+  return stringNova; //oi e bAnAnA
 }
 
 
 // EXERCÍCIO 07
 function calculaIngressosEspetaculo(custo, valorIngresso) {
   // implemente sua lógica aqui
-  var custo = Number(prompt("Digite o custo do espetáculo."));
-  var valorIngresso = Number(prompt("Digite o valor de cada ingresso."));
+  
   let ingressosMinimos = custo / valorIngresso;
   return ingressosMinimos; // cus=3000 e ing=100; cus=5500 e ing=50
 
@@ -93,8 +92,7 @@ function calculaIngressosEspetaculo(custo, valorIngresso) {
 // EXERCÍCIO 08
 function checaStringsMesmoTamanho(string1, string2) {
   // implemente sua lógica aqui
-    var string1 = prompt("Digite algo para o string1").trim();
-    var string2 = prompt("Digite outra coisa para o string2").trim();
+  
     let verifica = string1.length === string2.length;
     return verifica;
   /**string1: "ola"
