@@ -156,9 +156,9 @@ string2: "MeSA*/
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
   // implemente sua lógica aqui
-  var anoAtual = Number(prompt('Em que ano estamos? (ex.: 2022)'));
-  var anoNascimento = Number(prompt('Em que ano você nasceu? (ex.: 1999)'));
-  var anoEmissao = Number(prompt('Em que ano sua carteira de identidade foi emitida? (ex.: 1999)'));
+  let anoAtual = Number(prompt('Em que ano estamos? (ex.: 2022)'));
+  let anoNascimento = Number(prompt('Em que ano você nasceu? (ex.: 1999)'));
+  let anoEmissao = Number(prompt('Em que ano sua carteira de identidade foi emitida? (ex.: 1999)'));
   let idade = anoAtual - anoNascimento
   let renovar = ((anoAtual - anoEmissao) >= 5) && idade <= 20 || ((anoAtual - anoEmissao) >= 10) && idade > 20 && idade <= 50 || ((anoAtual - anoEmissao) >= 15) && idade > 50;
   
