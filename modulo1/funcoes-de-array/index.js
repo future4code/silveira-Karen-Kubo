@@ -104,11 +104,14 @@ const pokemons = [
     { nome: "Psyduck", tipo: "água" },
  ]
 
- const ordemAlfabetica = pokemons.map((item) => {
-     item.nome.sort((a, b) => { 
-        return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
-     })
-     return item.nome
- })
+ const ordemAlfabetica = pokemons.sort((a, b) => { 
+    return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
+ });
+     console.log(ordemAlfabetica);
 
 
+     //1b
+ const tiposSemRepetir = pokemons.map(pokemon => pokemon.tipo);
+ const unicos = [... new Set(tiposSemRepetir)];
+ console.log(unicos);
+        
