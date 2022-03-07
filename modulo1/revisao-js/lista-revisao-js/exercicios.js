@@ -114,22 +114,54 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+    let array1 = [];
+    let numeroAleatorio = 0;
+    let min = Math.min(...array);
+    let max = Math.max(...array);
+    array.splice(array.indexOf(min), 1);
+    array.splice(array.indexOf(max), 1);
+
+    const descobreMaior = (array) => {
+        for (let numero of array) {
+            if (numero > numeroAleatorio) {
+                numeroAleatorio = numero
+            }
+        }
+        return numeroAleatorio;
+    }
+
+    const descobreMenor = (array)=> {
+        for (let numero of array) {
+            if (numero < numeroAleatorio) {
+                numeroAleatorio = numero
+            }
+        }
+        return numeroAleatorio;
+    }
+
+    array1.push(descobreMaior);
+    array1.push(descobreMenor);
+    return array1;
+
 }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+
+   return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores}.`
 }
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-   
+   let array = {... pessoa, nome:"ANÔNIMO"}
+   return array;
 }
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+   const pessoasAutorizadas = pessoas.filter((pessoa) => {
+       return pessoa.altura >= 1.5 && pessoa.idade >= 14    
+   })
 }
 
 // EXERCÍCIO 13B
