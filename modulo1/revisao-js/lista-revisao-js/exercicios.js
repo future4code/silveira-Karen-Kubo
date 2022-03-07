@@ -40,12 +40,26 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    const arrayPar = array.filter((numero) => {
+        return numero % 2 === 0;
+    });
+
+    let numerosElevadosADois = [];
+    for (let numero of arrayPar) {
+        numerosElevadosADois.push(numero*numero)
+    }
+    return numerosElevadosADois;
 }
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  
+    let numeroAleatorio = -Infinity;
+    for (let numero of array) {
+        if (numero > numeroAleatorio) {
+            numeroAleatorio = numero;
+        } 
+    }
+  return numeroAleatorio;
 }
 
 // EXERCÍCIO 07
