@@ -114,35 +114,32 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-    let array1 = [];
-    let numeroAleatorio = 0;
-    let min = Math.min(...array);
-    let max = Math.max(...array);
-    array.splice(array.indexOf(min), 1);
-    array.splice(array.indexOf(max), 1);
+    let maior = -Infinity
+    let menor = Infinity
+    let segundoMaior = -Infinity
+    let segundoMenor = Infinity
+    let arrayDosDoisNumeros = []
 
-    const descobreMaior = (array) => {
-        for (let numero of array) {
-            if (numero > numeroAleatorio) {
-                numeroAleatorio = numero
-            }
+    for (let num of array) {
+        if (num < menor) {
+            menor = num
         }
-        return numeroAleatorio;
+        if (num > maior) {
+            maior = num
+        }
     }
 
-    const descobreMenor = (array)=> {
-        for (let numero of array) {
-            if (numero < numeroAleatorio) {
-                numeroAleatorio = numero
-            }
+    for (let num of array) {
+        if (num < segundoMenor && num !== menor) {
+            segundoMenor = num
         }
-        return numeroAleatorio;
+        if (num > segundoMaior && num !== maior) {
+            segundoMaior = num
+        }
     }
 
-    array1.push(descobreMaior);
-    array1.push(descobreMenor);
-    return array1;
-
+    arrayDosDoisNumeros = [segundoMaior, segundoMenor]
+    return arrayDosDoisNumeros
 }
 
 // EXERCÍCIO 11
@@ -160,23 +157,39 @@ function retornaPessoaAnonimizada(pessoa) {
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
    const pessoasAutorizadas = pessoas.filter((pessoa) => {
-       return pessoa.altura >= 1.5 && pessoa.idade >= 14    
+       return pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade <= 60
    })
+   return pessoasAutorizadas;
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+    const pessoasNaoAutorizadas = pessoas.filter((pessoa) => {
+        return pessoa.altura < 1.5 || pessoa.idade <= 14 || pessoa.idade > 60
+    })
+    return pessoasNaoAutorizadas;
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+    const contasAtualizado = contas.map((conta) => {
+        let soma = 0;
+        for (let i = 0; i < conta.compras.length; i++) {
+            soma += conta.compras[i]
+        }
+        let novoSaldo = conta.saldoTotal - soma
+       
+        return {...conta, saldoTotal: novoSaldo, compras:[]};
+    })
+    return contasAtualizado;
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+  const nomesAlfab = consultas.map((consulta) => {
+      return consulta.nome.sort();
+  })
+  return nomesAlfab;
 }
 
 // EXERCÍCIO 15B
