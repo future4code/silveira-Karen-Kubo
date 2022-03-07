@@ -19,16 +19,23 @@ function retornaArrayOrdenado(array) {
         if (a < b) {
             return -1;
           }
-          if (a > b) {
+        if (a > b) {
             return 1;
           }
-          return 0;
+        return 0;
     });
 }
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+    let numerosPares = [];
+    for (let numero of array) {
+        if (numero % 2 === 0) {
+            numerosPares.push(numero);
+        }
+    }
+        return numerosPares;       
+    
 }
 
 // EXERCÍCIO 05
