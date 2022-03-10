@@ -35,8 +35,8 @@ div>p:first-child {
 }
 
 div img {
-    border-style: solid;
-    margin-top: 100px;
+    border-style: none;
+    padding-top: 10px;
 }
 
 .botao-amarelo {
@@ -65,6 +65,11 @@ div img {
 
 }
 
+.icone:hover {
+    width: 30px;
+    height: auto;
+
+}
 
 /** 
   *
@@ -119,6 +124,24 @@ td button {
     color: black;
 }
 
+td button:hover {
+    background-color: #e47d1d;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: large;
+    color: black;
+}
+
+td button:active {
+    background-color: red;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: large;
+    color: black;
+}
+
 .container-do-search {
     margin-top: 20px;
     height: 100px;
@@ -126,15 +149,19 @@ td button {
 
 
 #back-button {
-    background-color: white;
+    background-color: #fadf63;
     width: 100px;
-    height: 20px;
+    height: 30px;
     border: 1px solid black;
-    border-radius: 5px;
-    font-size: 10px;
+    border-radius: 4px;
+    font-size: 15px;
     color: black;
 }
 
 #back-button:hover {
-    background-color: #635a3d
+    background-color: #e47d1d;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
 }
