@@ -5,6 +5,7 @@
   **/
 
 * {
+    font-family: 'Fredoka', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -58,6 +59,19 @@ div img {
     background-color: #c44f00;
 }
 
+#botao-comprar {
+    position: relative;
+    top: 130px;
+}
+
+#botao-comprar:hover {
+    background-color: #c44f00;
+}
+
+#botao-comprar:active {
+    background-color: red;
+}
+
 .container {
     height: 500px;
     text-align: center;
@@ -72,7 +86,13 @@ div img {
 .icone:hover {
     width: 30px;
     height: auto;
+    opacity: 0.5;
+}
 
+.icone:active {
+    width: 30px;
+    height: auto;
+    opacity: 1;
 }
 
 /** 
@@ -100,6 +120,8 @@ div img {
 #container-para-comprar>p {
     color: #c44f00;
     padding: 100px 0;
+    position: relative;
+    top: 120px;
     font-size: 60px;
 }
 
@@ -118,6 +140,10 @@ div:last-child {
 table {
     width: 60%;
     margin: auto;
+}
+
+td {
+    text-align: center;
 }
 
 td button {
@@ -160,6 +186,7 @@ td button:active {
     border-radius: 4px;
     font-size: 15px;
     color: black;
+    margin-left: 50%;
 }
 
 #back-button:hover {
@@ -169,3 +196,4 @@ td button:active {
     height: 50px;
     font-size: 20px;
 }
+
