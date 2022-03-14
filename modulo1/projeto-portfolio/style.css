@@ -8,6 +8,7 @@
 .background {
     background-image: url(./img/butterfly1.jpg);
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .cabecalho {
@@ -53,12 +54,13 @@
     border: 8px solid rgb(219, 174, 248);
     border-radius: 10px;
     position: relative;
-    left: 980px;
-    bottom: 390px;
+    left: 1080px;
+    bottom: 355px;
     box-shadow: 20px 20px 10px rgb(208, 54, 255);
 }
 
 .intro {
+    display: flex;
     display: inline-block;
     text-align: justify;
     margin-right: 430px;
@@ -81,9 +83,8 @@
 }
 
 .media-object {
-    display: inline;
-    margin-right: 202px;  
-    margin-left: 202px;
+    display: flex;
+    align-items:center ;
 }
 
 h2 {
