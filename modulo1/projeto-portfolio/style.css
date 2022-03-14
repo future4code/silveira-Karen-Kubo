@@ -83,8 +83,9 @@
 }
 
 .media-object {
-    display: flex;
-    align-items:center ;
+display: inline;
+margin-left: 220px;
+margin-right: 220px;
 }
 
 h2 {
