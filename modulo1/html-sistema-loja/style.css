@@ -1,0 +1,168 @@
+/* index */
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-image: url(./img/marvel.png);
+    display: inline-flexbox;
+}
+
+.botoes {
+    background-color: #87d9e7;
+    border-radius: 4px;
+    display: inline;
+    border: 4px ridge black;
+    cursor: pointer;
+    border-width: 2px;
+    color: black;
+
+}
+
+.icones {
+    max-width: 5vw;
+    max-height: 5vh;
+    width: auto;
+    height: auto;
+    margin-left: 50px;
+    display: inline;
+}
+
+.container {
+    width: 90vw;
+    display: flexbox;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+
+}
+
+#introducao {
+
+    border: 2px ridge black;
+    border-radius: 4px;
+    display: block;
+    margin-top: 60px;
+    width: 60vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    
+}
+
+#mensagem {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#redes {
+    font-weight: bolder;
+}
+
+.fachada {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* redimensionando imgs */
+
+.img {
+    width: 50%;
+}
+
+/* controle de estoque */
+
+.produtos {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 4px ridge black;
+    border-radius: 4px;
+    background-color: white;
+    position:absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.produtoss {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 4px ridge black;
+    border-radius: 4px;
+    background-color: white;
+    position:absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.item {
+    border: 2px ridge grey;
+}
+
+/* add produto */
+.box {
+    border: 2px ridge black;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bolder;
+    background-color: white;
+    width: 50%;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+
+}
+
+.boxx {
+    border: 2px ridge black;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bolder;
+    background-color: white;
+    width: 50%;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+
+}
+#btn-add {
+    border: 2px ridge black;
+    border-radius: 2px;
+    background-color: #87d9e7;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#texto-add {
+    text-align: center;
+}
+
+.colocar-pad {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* funcionarios */
+#centralizar {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
