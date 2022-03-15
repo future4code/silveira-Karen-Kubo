@@ -72,6 +72,14 @@ main {
 
 }
 
+.media:hover {
+    box-shadow: -5px -5px 30px 5px rgb(255, 75, 225), 5px 5px 30px 5px rgb(235, 108, 161);
+}
+
+.media:active {
+    box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px rgb(240, 27, 116);
+}
+
 .descricao {
     text-align: center;
     font-size: 30px;
