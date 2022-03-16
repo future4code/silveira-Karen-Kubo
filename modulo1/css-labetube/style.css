@@ -12,8 +12,8 @@ header {
     background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
 }
 
-#lupa {
-    width: 30px;
+#campo-busca img {
+    width: 15%;
 }
 
 #caixa-titulo{
@@ -31,7 +31,7 @@ header {
 
 #campo-busca input {
     height: 30px;
-    width: 200px;
+    width: 230px;
 }
 
 #titulo {
@@ -42,7 +42,7 @@ header {
 }
 
 #logo {
-    width: 150px;
+    width: 10vw;
 }
 
 /* main index */
@@ -123,7 +123,7 @@ section {
     justify-content: center;
     background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     background-size: cover;
-    min-height: 100%;
+    min-height: 100vh;
     
 }
 #titulo-video {
@@ -151,3 +151,68 @@ section {
 video {
     width: 70vw;
 }
+
+/* responsividade cel */
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #titulo {
+        font-size:20px;
+    }
+
+    #campo-busca input {
+        height: 25px;
+        width: 130px;
+    }
+
+    #campo-busca img {
+        width: 15%;
+    }
+
+    header, footer {
+        width: 100vw;
+    }
+    #contato {
+        font-size:20px;
+    }
+    .icones-contato {
+        width: 20px;
+    }
+
+    section {
+        min-height: 80vh;
+    }
+}
+
+    /* tablets */
+@media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+    #titulo {
+        font-size:35px;
+    }
+
+    #campo-busca input {
+        height: 25px;
+        width: 130px;
+    }
+
+    #campo-busca img {
+        width: 15%;
+    }
+
+    header, footer {
+        width: 100vw;
+    }
+
+    #contato {
+        font-size:30px;
+    }
+
+    .icones-contato {
+        width: 30px;
+    }
+    
+    section {
+        min-height: 80vh;
+    }
+
+
+}
+    
