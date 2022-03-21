@@ -1,0 +1,199 @@
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+* {
+    font-family: 'Fredoka', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+}
+
+input {
+    height: 20px;
+    width: 500px;
+    border-bottom: solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+button:focus {
+    color: white;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+div>p:first-child {
+    display: inline;
+}
+
+div img {
+    border-style: none;
+    padding-top: 10px;
+}
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    display: block;
+    margin: auto;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+#botao-comprar {
+    position: relative;
+    top: 130px;
+}
+
+#botao-comprar:hover {
+    background-color: #c44f00;
+}
+
+#botao-comprar:active {
+    background-color: red;
+}
+
+.container {
+    height: 500px;
+    text-align: center;
+}
+
+.icone {
+    width: 20px;
+    height: auto;
+
+}
+
+.icone:hover {
+    width: 30px;
+    height: auto;
+    opacity: 0.5;
+}
+
+.icone:active {
+    width: 30px;
+    height: auto;
+    opacity: 1;
+}
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    padding: 50px;
+    margin-top: 10px;
+    height: fit-content;
+}
+
+#container-de-descricao>ol {
+    padding: 15px 0px;
+}
+
+#container-para-comprar {
+    background-color: #e7eb90;
+}
+
+#container-para-comprar>p {
+    color: #c44f00;
+    padding: 100px 0;
+    position: relative;
+    top: 120px;
+    font-size: 60px;
+}
+
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+div:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    width: 60%;
+    margin: auto;
+}
+
+td {
+    text-align: center;
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+td button:hover {
+    background-color: #e47d1d;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: large;
+    color: black;
+}
+
+td button:active {
+    background-color: red;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: large;
+    color: black;
+}
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+}
+
+
+#back-button {
+    background-color: #fadf63;
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 15px;
+    color: black;
+    margin-left: 50%;
+}
+
+#back-button:hover {
+    background-color: #e47d1d;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+}
+
