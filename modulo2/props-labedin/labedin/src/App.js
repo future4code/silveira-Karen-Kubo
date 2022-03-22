@@ -36,15 +36,15 @@ function App() {
       <div className="page-section-container">
         <h2>Experiências profissionais</h2>
         <CardGrande 
-          imagem="https://s3.amazonaws.com/future4.com.br/static/headf4-c492117ca2373dc85ca81bf715b3dc2a.png" 
-          nome="Labenu" 
-          descricao="Formando desenvolvedores para o mercado de trabalho!" 
+          imagem="https://feeta.com.br/wp-content/uploads/2015/04/logotipo_final_feeta-01.png" 
+          nome="Estagiária RH - Feeta RH" 
+          descricao="Atividades: Auxiliar o setor nas atividades de recrutamento e seleção através da divulgação de vagas, triagem de currículos, no desenvolvimento e elaboração de relatórios e perfis e controle de documentos para a empresa, contato com candidatos, elaboração de shortlist, mapeamento comercial, correção de provas, aplicação de testes, entrevistas, alinhamento de vagas, análise de vídeos para programas de estágio/trainee e condução de dinâmicas." 
         />
         
         <CardGrande 
-          imagem="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/2449px-NASA_logo.svg.png" 
-          nome="NASA" 
-          descricao="Apontando defeitos." 
+          imagem="https://www.drcarlosmattos.com.br/wp-content/uploads/2020/03/logohmcp.jpg" 
+          nome="Estagiária de psicologia clínica - Hospital PUC-Campinas" 
+          descricao="Realização de atendimentos individuais na clínica, identificação de demandas, elaboração de um plano interventivo e confecção de relatórios." 
         />
       </div>
 
