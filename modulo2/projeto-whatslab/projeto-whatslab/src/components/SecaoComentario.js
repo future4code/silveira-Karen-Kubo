@@ -22,8 +22,10 @@ const Mensagem = styled.div`
 `
 
 const CampoMensagens = styled.div`
-    border: 2px solid black;
-    height: 90vh;
+    border: 3px solid black;
+    height: 80vh;
+    display: flex;
+    flex-direction: column-reverse;
 `
 
 
@@ -51,19 +53,21 @@ export class SecaoComentario extends Component {
  
     }
 
-
+    
 
     
 	render() {
    
-        const mensagens = this.state.mensagens.map(() => {
+        const mensagens = this.state.mensagens.map((mensagem) => {
             return (           
                 <Mensagem>
-                    <P><strong> {this.state.mensagens.remetente}: </strong> {this.state.mensagens.conteudo} </P>
+                    <P><strong> {mensagem.remetente}: </strong> {mensagem.conteudo} </P>
                 </Mensagem>
                
             )
             })
+
+        console.log(this.state.mensagens)
 
 		return (
             <>
