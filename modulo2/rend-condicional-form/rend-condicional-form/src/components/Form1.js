@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PerguntaMultipla from './PerguntaMultipla';
+
 
 const Container = styled.div`
     display:flex;
@@ -23,6 +25,8 @@ const Input = styled.input`
 
 
 export default class Form1 extends React.Component {
+
+  
   render() {
     return (
       <Container>
@@ -37,7 +41,11 @@ export default class Form1 extends React.Component {
         <Input/>
 
         <H3>4. Qual a sua escolaridade?</H3>
-        <Input/>
+        
+        <PerguntaMultipla
+        respostas={["Ensino médio incompleto", "Ensino médio completo", "Ensino superior incompleto", "Ensino superior completo"]}/>
+         
+
       </Container>
     )
   }

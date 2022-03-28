@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PerguntaMultipla from './PerguntaMultipla';
 
 const Container = styled.div`
     display:flex;
@@ -30,7 +31,8 @@ export default class Form3 extends React.Component {
         <Input/>
 
         <H3>6. Você fez algum curso complementar?</H3>
-        <Input/>
+        <PerguntaMultipla
+        respostas={["Curso técnico", "Curso de Inglês", "Não"]}/>
 
       </Container>
     )

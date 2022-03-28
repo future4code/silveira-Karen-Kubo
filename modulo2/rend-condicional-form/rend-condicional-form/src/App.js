@@ -6,6 +6,10 @@ import Form1 from './components/Form1';
 import Form2 from './components/Form2';
 import Form3 from './components/Form3';
 import FormFinal from './components/FormFinal';
+import PerguntaMultipla from './components/PerguntaMultipla';
+
+
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -17,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 const MainContainer = styled.div`
   min-height: 100vh;
   min-width: 100vw;
-  background-color: lightseagreen;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +31,7 @@ const Botao = styled.button`
     margin-top: 30px;
 `
 
-export class App extends React.Component{
+export default class App extends React.Component{
   state = {
     etapa: 1
   }
@@ -47,29 +51,29 @@ export class App extends React.Component{
   }
 
   proximaEtapa = () => {
+    
     let newLocal = this.state.etapa + 1;
     this.setState({etapa: newLocal});
-
+    
     }
   
+  
+  botao = () => {
+    return this.state.etapa !== 4 ? <Botao onClick={this.proximaEtapa}>Próxima Etapa</Botao> : `🙂`
+  }
 
-  render() {
-
+  render () {
+  
   return (
     <>
     <MainContainer>
       <GlobalStyle/>
       {this.verificaEtapa()}
-      <Botao onClick={this.proximaEtapa}>Próxima Etapa</Botao>
+
+      {this.botao()}
 
     </MainContainer>
     </>
-  );
-  }
-}
-
-
-export default App;
-
-
-
+  )
+ }
+};
