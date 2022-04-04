@@ -38,7 +38,7 @@ class App extends React.Component {
     this.salvarDadosLS();
   };
 
-  salvarDadosLS = () => {
+  salvarDadosLS = () => {  
     localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas));
   }
 
