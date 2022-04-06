@@ -4,14 +4,32 @@ import React, { Component } from 'react'
 
 const Tela = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const Tela2 = styled.div`
+    display: flex;
+    height: 50vh;
     justify-content: space-around;
     align-items: center;
+
+    label{ 
+        font-size: 1.5em;
+
+    }
+    input{
+        height: 1.5em;
+        background-color: beige;
+        border-radius: 6px;
+    }
 `
 
 const Botao = styled.button`
     background: black;
     border-radius: 10px;
     color: white;
+    height: 3em;
 
 
     :hover {
@@ -80,7 +98,7 @@ export default class CriarUser extends Component {
                 <Div>
 
                 </Div>
-                <Tela>
+                <Tela2>
                     <label for="Nome">Nome:
                         <input
                             placeholder="Nome"
@@ -96,7 +114,7 @@ export default class CriarUser extends Component {
                     </label>
 
                     <Botao onClick={this.props.createUsers}>Criar Usuário</Botao>
-                </Tela>
+                </Tela2>
             </>
         )
     }

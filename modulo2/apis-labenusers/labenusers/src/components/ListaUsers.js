@@ -8,11 +8,27 @@ const Tela = styled.div`
     justify-content: space-around;
     align-items: center;
 `
+const Tela2 = styled.div`
+    display: flex;
+    height: 50vh;
+    justify-content: space-around;
+    align-items: center;
+    label{ 
+        font-size: 1.5em;
+
+    }
+    input{
+        height: 1.5em;
+        background-color: beige;
+        border-radius: 6px;
+    }
+`
 
 const Botao = styled.button`
     background: black;
     border-radius: 10px;
     color: white;
+    height: 3em;
 
 
     :hover {
@@ -66,6 +82,23 @@ const Botao = styled.button`
 `
 
 const Div = styled.div`
+    p{
+        text-align: center;
+        font-size: 1.5em;
+
+    }
+    input{
+        height: 1.5em;
+        background-color: beige;
+        border-radius: 6px;
+    }
+`
+const DivUsers = styled.div`
+    margin-top: 20px;
+    box-shadow: -5px -5px 30px 5px salmon, 5px 5px 30px 5px lightblue;
+    border-radius: 6px;
+    background-color: #faa499;
+    background-image: linear-gradient(319deg, #faa499 0%, #f7dd85 37%, #ffc55c 100%);
 
 `
 
@@ -74,7 +107,9 @@ export default class ListaUsers extends Component {
         return (
             <Tela>
                 <Botao onClick={this.props.irparahome}>Página Inicial</Botao>
+                <DivUsers>
                 {this.props.users}
+                </DivUsers>
                 <Div>
                     <p>Procurar usuários:</p>
                     <input

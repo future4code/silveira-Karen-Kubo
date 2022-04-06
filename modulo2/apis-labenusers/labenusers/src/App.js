@@ -10,22 +10,53 @@ const headers = {
     Authorization: "karen-kubo-silveira"
   }
 };
+const Footer = styled.div`
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+     height: 20vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+  p{
+    text-align: center;
+    font-size: 1.5em;
 
+  }
+`
+const DivUser = styled.div`
+  display: flex;
+  margin: 10px;
+`
+const DivSpan = styled.div`
+  width: 15vw;
+  display: flex;
+  word-wrap: break-word;
+  justify-content: center;
+  `
 
+  const Span = styled.span `
+    text-align: center;
+    font-size: 1em;
+
+  `
 
 const Global = styled.div`
     margin: 0;
     padding: 0;
     min-height: 100vh;
     box-sizing: border-box;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
-    background-blend-mode: multiply,multiply;
+    background-color: #cdedfd;
+    background-image: linear-gradient(319deg, #cdedfd 0%, #ffec82 37%, #ffcfd2 100%);
+
 `
 
 const Botao = styled.button`
     background: black;
     border-radius: 10px;
     color: white;
+    height: 3em;
+
 
 
     :hover {
@@ -162,17 +193,6 @@ export default class App extends React.Component {
     this.setState({ inputBusca: event.target.value })
   }
 
-  // removerUser = (name) => {
-  //   let novosUsuarios = [...this.state.usuarios];
-  //   const acharIndex = novosUsuarios.findIndex((user) => {
-  //     return user.name === name
-  //   });
-  //   novosUsuarios.splice(acharIndex, 1);
-  //   this.setState({
-  //     usuarios: novosUsuarios
-  //   })
-  // }
-
   verificarUsers = () => {
     this.setState({ criacaoUsuario: false })
   }
@@ -200,10 +220,14 @@ export default class App extends React.Component {
     const users = this.state.usuarios.map((usuario) => {
       return (
 
-        <div key={usuario.id}>
-          <span>{usuario.name}</span>
+        <DivUser key={usuario.id}>
+          <DivSpan>
+          <Span>{usuario.name}</Span>
+          </DivSpan>
+          <div>
           <Botao onClick={() => this.deleteUsers(usuario)}>Remover</Botao>
-        </div>
+          </div>
+        </DivUser>
       )
     });
 
@@ -226,7 +250,9 @@ export default class App extends React.Component {
             valueBusca={this.state.inputBusca}
             filtrarUsers={this.filtrarUsers}
           />}
-
+      <Footer>
+        <p>© 2022 - Developed by: Karen Kubo</p>
+      </Footer>
       </Global>
     )
   }
