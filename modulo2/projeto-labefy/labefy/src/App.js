@@ -2,44 +2,53 @@ import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './img/Logo-Karen-Kubo.png'
+import Background from './img/background.jpg'
 import { createGlobalStyle } from 'styled-components';
 import AddPlaylist from './components/AddPlaylist';
-import Home from './components/Home';
 import AddSongs from './components/AddSongs';
 
 const Global = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  color: white;
 `
 const MainScreen = styled.div`
   min-height: 100vh;
   min-width: 100vw;
+  background-image: url(${Background});
+  background-size: cover;
 `
 const ContentScreen = styled.div`
   min-height: 80vh;
 `
 const Footer = styled.div`
-  background-color: beige;
+
   display: flex;
   justify-content: center;
   height: 10vh;
   min-width: 100vw;
-  position: fixed;
-  bottom: 0;
+
+  p{
+    font-size: 1em;
+  }
+`
+const Div = styled.div `
+  img {
+    height: 15vh;
+  }
 `
 const ButtonScreen = styled.div`
-  background-color: beige;
   display: flex;
-  justify-content: space-between;
   height: 15vh;
   button { 
+    border-radius: 7px;
+    box-shadow: 5px 5px 10px;
     height: 5vh;
-    align-self: center;
-    border: none;
-    background: none;
+    align-self: center;;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     cursor: pointer;
+    font-size: 2em;
   }
 `
 
@@ -51,12 +60,11 @@ const headers = {
 
 export default class App extends React.Component {
   state = {
-    switchScreen: "home",
+    switchScreen: "addPlaylist",
     playlists: [],
     inputPlaylist: "",
-    inputTrack: "",
-    inputSinger: "",
-    inputUrl: ""
+    idPlaylist: ""
+
   }
 
   componentDidMount = () => {
@@ -72,23 +80,10 @@ export default class App extends React.Component {
         this.setState({
           playlists: response.data.result.list
         })
-        console.log(this.state.playlists)
+
       })
       .catch((error) => {
         console.log(error.response.data)
-      })
-  }
-
-  getPlaylistTracks = (playlist) => {
-
-    axios
-      .get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlist.id}/tracks`, headers)
-      .then((response) => {
-        console.log(response.data)
-        
-      .catch((error) => {
-        console.log(error.response.data)
-      })
       })
   }
 
@@ -113,8 +108,6 @@ export default class App extends React.Component {
     }
   }
 
-
-
   createPlaylist = () => {
     const body = {
       name: this.state.inputPlaylist
@@ -134,22 +127,8 @@ export default class App extends React.Component {
 
   }
 
-
-
   onChangePlaylist = (e) => {
     this.setState({ inputPlaylist: e.target.value })
-  }
-
-  onChangeTrack = (e) => {
-    this.setState({ inputTrack: e.target.value })
-  }
-
-  onChangeSinger = (e) => {
-    this.setState({ onChangeSinger: e.target.value })
-  }
-
-  onChangeUrl = (e) => {
-    this.setState({ inputUrl: e.target.value })
   }
 
 
@@ -161,41 +140,50 @@ export default class App extends React.Component {
           onChangePlaylist={this.onChangePlaylist}
           onClickAddPlaylist={this.createPlaylist}
           playlists={this.state.playlists}
+          addTracks={this.switchingScreen}
+          deletePlaylist={this.deletePlaylist}
+
         />
 
       case "addSongs":
         return <AddSongs
-          valueTrack={this.state.inputTrack}
-          onChangeTrack={this.onChangeTrack}
-          valueSinger={this.state.inputSinger}
-          onChangeSinger={this.onChangeSinger}
-          valueUrl={this.state.inputUrl}
-          onChangeUrl={this.onChangeUrl}
-          onClickAddTrack={() => { }}
           playlists={this.state.playlists}
+          playlistid={this.state.idPlaylist}
         />
 
       default:
-        return <Home />
+        return <AddPlaylist
+          valuePlaylist={this.state.inputPlaylist}
+          onChangePlaylist={this.onChangePlaylist}
+          onClickAddPlaylist={this.createPlaylist}
+          playlists={this.state.playlists}
+          addTracks={this.switchingScreen}
+          deletePlaylist={this.deletePlaylist}
+
+
+        />
     }
   }
 
-  definingScreen = (screen) => {
-    this.setState({ switchScreen: screen });
+  switchingScreen = (id) => {
+    this.setState({ switchScreen: "addSongs", idPlaylist: id});
   };
 
+  definingScreen = (screen) => {
+    this.setState({ switchScreen: screen});
+  };
   render() {
-
+    
 
     return (
       <>
         <Global />
         <MainScreen>
           <ButtonScreen>
+            <Div>
             <img src={Logo} alt="logo" title="Logo de Karen Kubo" />
-            <button onClick={() => this.definingScreen("home")}>Home</button>
-            <button onClick={() => this.definingScreen("addPlaylist")}>Add Playlist</button>
-            <button onClick={() => this.definingScreen("addSongs")}>Add tracks to the playlist</button>
+            </Div>
+            <button onClick={() => this.definingScreen("addPlaylist")}>Add a Playlist</button>
           </ButtonScreen>
 
           <ContentScreen>
