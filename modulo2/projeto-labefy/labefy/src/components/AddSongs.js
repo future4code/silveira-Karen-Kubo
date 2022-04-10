@@ -55,7 +55,7 @@ export default class AddSongs extends React.Component {
     }
 
     onChangeSinger = (e) => {
-        this.setState({ onChangeSinger: e.target.value })
+        this.setState({ inputSinger: e.target.value })
     }
 
     onChangeUrl = (e) => {
