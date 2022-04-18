@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const headers = {
     headers: {
-      Authorization: "karen-kubo-silveira"
+      Authorization : "karen-kubo-silveira"
     }
   };
 
@@ -49,6 +49,31 @@ export default class AddSongs extends React.Component {
           })
       }
 
+      createPlaylistTrack = () => {
+        // https://www.youtube.com/embed/NG2zyeVRcbs
+        const body = {
+            name: this.state.inputTrack,
+            artist: this.state.inputSinger,
+            url: this.state.inputUrl
+        }
+        axios
+            .get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistid}/tracks`, body, headers)
+            .then((response) => {
+                this.getPlaylistTracks();
+               
+                alert(`Track added successfully!`)
+            })
+            .catch((error) => {
+                alert(error.response.message)
+            })
+            this.setState({
+                inputTrack: "",
+                inputSinger: "",
+                inputUrl: "",
+
+            })
+    }
+
     
     onChangeTrack = (e) => {
         this.setState({ inputTrack: e.target.value })
@@ -83,30 +108,6 @@ export default class AddSongs extends React.Component {
             })            
     }
 
-    createPlaylistTrack = () => {
-        const body = {
-            name: this.state.inputTrack,
-            artist: this.state.inputSinger,
-            url: this.state.inputUrl
-        }
-        axios
-            .get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistid}/tracks`, body, headers)
-            .then((response) => {
-                this.getPlaylistTracks();
-                this.setState({
-                    inputTrack: "",
-                    inputSinger: "",
-                    inputUrl: "",
-                    idPlaylist: ""
-
-                })
-                alert(`Done 💃🏼`)
-            })
-            .catch((error) => {
-                alert(error.response.data.message)
-            })
-    }
-
    
    
     render() {
@@ -125,7 +126,7 @@ export default class AddSongs extends React.Component {
 
         })
 
-        console.log(this.props.playlistid)
+        // console.log(this.props.playlistid)
 
         return (
 
@@ -143,7 +144,7 @@ export default class AddSongs extends React.Component {
                     <input placeholder='Url/Link' value={this.state.valueUrl} onChange={this.onChangeUrl} />
                 </label>
 
-                <button onClick={() => this.createPlaylistTrack()}>Add track</button>
+                <button onClick={this.createPlaylistTrack}>Add track</button>
                 </Div1>
                 {mapOfPlaylists}
 

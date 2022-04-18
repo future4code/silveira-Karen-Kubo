@@ -20,13 +20,13 @@ export default class AddPlaylist extends React.Component {
     render() {
         const mapOfPlaylists = this.props.playlists.map((playlist) => {
             return (
-              <>
+              
                 <Div key={playlist.id}>
                   <p>{playlist.name}</p>
                   <button onClick={() => this.props.deletePlaylist(playlist)}>Remove</button>
                   <button onClick={() => this.props.addTracks(playlist.id)}>Add tracks</button>
                 </Div>
-              </>
+              
             )
           })
 
