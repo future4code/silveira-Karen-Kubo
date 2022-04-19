@@ -42,6 +42,7 @@ export default class AddSongs extends React.Component {
             this.setState({
               playlists: response.data.result.list
             })
+            console.log(this.state.playlists)
     
           })
           .catch((error) => {
@@ -49,50 +50,7 @@ export default class AddSongs extends React.Component {
           })
       }
 
-      createPlaylistTrack = () => {
-        // https://www.youtube.com/embed/NG2zyeVRcbs
-        const body = {
-            name: this.state.inputTrack,
-            artist: this.state.inputSinger,
-            url: this.state.inputUrl
-        }
-        axios
-            .get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistid}/tracks`, body, headers)
-            .then((response) => {
-                this.getPlaylistTracks();
-               
-                alert(`Track added successfully!`)
-            })
-            .catch((error) => {
-                alert(error.response.message)
-            })
-            this.setState({
-                inputTrack: "",
-                inputSinger: "",
-                inputUrl: "",
-
-            })
-    }
-
-    
-    onChangeTrack = (e) => {
-        this.setState({ inputTrack: e.target.value })
-    }
-
-    onChangeSinger = (e) => {
-        this.setState({ inputSinger: e.target.value })
-    }
-
-    onChangeUrl = (e) => {
-        this.setState({ inputUrl: e.target.value })
-    }
-
-    componentDidMount () {
-        this.getAllPlaylists();
-        this.getPlaylistTracks();
-    }
-
-    getPlaylistTracks = () => {
+      getPlaylistTracks = () => {
 
         axios
             .get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistid}/tracks`, headers)
@@ -108,13 +66,68 @@ export default class AddSongs extends React.Component {
             })            
     }
 
-   
-   
+      createPlaylistTrack = () => {
+        const body = {
+            name: this.state.inputTrack,
+            artist: this.state.inputSinger,
+            url: this.state.inputUrl
+        }
+        axios
+            .post(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistid}/tracks`, body, headers)
+            .then((response) => {
+                this.getPlaylistTracks();
+                this.setState({
+                    inputTrack: "",
+                    inputSinger: "",
+                    inputUrl: "",
+    
+                })
+               
+                alert(`Track added successfully!`)
+            })
+            .catch((error) => {
+                alert(error.response.message)
+            })
+
+    }
+
+    removeTrackFromPlaylist = (trackId) => {
+        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistid}/tracks/${trackId}`, headers).then(() => {
+            this.getPlaylistTracks();
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+
+    componentDidMount () {
+        this.getAllPlaylists();
+        this.getPlaylistTracks();
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        if (prevState.tracks !== this.state.tracks) {
+            this.getPlaylistTracks();
+        }
+    }
+    
+    onChangeTrack = (e) => {
+        this.setState({ inputTrack: e.target.value })
+    }
+
+    onChangeSinger = (e) => {
+        this.setState({ inputSinger: e.target.value })
+    }
+
+    onChangeUrl = (e) => {
+        this.setState({ inputUrl: e.target.value })
+    }
+
     render() {
         const mapOfPlaylists = this.state.tracks.map ((playlist) => {
             return (
                 <Div key={playlist.id}>
                 <Span><strong>{playlist.name}</strong> - {playlist.artist}</Span>
+                <button onClick={() => this.removeTrackFromPlaylist(playlist.id)}>Remove</button>
                 <div>
                 <iframe controls autoplay src={playlist.url} height="315" width="560" title="YouTube video player">
                 </iframe>

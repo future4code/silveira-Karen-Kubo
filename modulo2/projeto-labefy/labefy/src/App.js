@@ -134,16 +134,6 @@ export default class App extends React.Component {
 
   switchScreen = () => {
     switch (this.state.switchScreen) {
-      case "addPlaylist":
-        return <AddPlaylist
-          valuePlaylist={this.state.inputPlaylist}
-          onChangePlaylist={this.onChangePlaylist}
-          onClickAddPlaylist={this.createPlaylist}
-          playlists={this.state.playlists}
-          addTracks={this.switchingScreen}
-          deletePlaylist={this.deletePlaylist}
-
-        />
 
       case "addSongs":
         return <AddSongs
