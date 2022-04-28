@@ -2,12 +2,19 @@ import axios from 'axios';
 import styled from 'styled-components';
 import React from 'react';
 import { Router } from './routes/Router';
+import Header from './pages/Header';
 
+const MainContainer = styled.div `
+  min-height: 80vh;
+`
 const App = () => {
   return (
-    <div>
+    <>
+    <Header/>
+    <MainContainer>
       <Router/>
-    </div>
+    </MainContainer>
+    </>
   );
 }
 
