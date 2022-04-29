@@ -4,6 +4,7 @@ import { goBack, goToAdminHomePage, goToHomePage } from '../routes/Coordinator';
 import axios from 'axios';
 import { BASE_URL } from '../constants/Url'
 import useForm from '../hooks/useForm'
+import { Botao, Form, Input, Select, MainContainerColumn } from '../styles/Style';
 
 const useProtectedPage = () => {
   const navigate = useNavigate();
@@ -40,16 +41,16 @@ export const LoginPage = () => {
   }
 
   return (
-    <div>LoginPage
+    <MainContainerColumn>
       <div>
-        <button onClick={() => goToHomePage(navigate)}>Voltar</button>
+        <Botao onClick={() => goToHomePage(navigate)}>Voltar</Botao>
 
       </div>
-      <form onSubmit={submit}>
-        <input name='email' placeholder='E-mail' type={"email"} value={form.email} onChange={onChange} required />
-        <input name='password' placeholder='Senha' type={"password"} value={form.password} onChange={onChange} required pattern={"^.{3,}"} title={"Sua senha deve ter no mínimo 3 caracteres"}/>
-        <button>Enviar</button>
-      </form>
-    </div>
+      <Form onSubmit={submit}>
+        <Input name='email' placeholder='E-mail' type={"email"} value={form.email} onChange={onChange} required />
+        <Input name='password' placeholder='Senha' type={"password"} value={form.password} onChange={onChange} required pattern={"^.{3,}"} title={"Sua senha deve ter no mínimo 3 caracteres"}/>
+        <Botao>Enviar</Botao>
+      </Form>
+    </MainContainerColumn>
   )
 }

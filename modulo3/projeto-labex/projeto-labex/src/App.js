@@ -6,6 +6,7 @@ import Header from './pages/Header';
 
 const MainContainer = styled.div `
   min-height: 80vh;
+  background-color: #967b8a;
 `
 const App = () => {
   return (

@@ -6,6 +6,7 @@ import useForm from '../hooks/useForm';
 import { useGetData } from '../hooks/useGetData'
 import {BASE_URL} from '../constants/Url';
 import axios from 'axios';
+import { Botao, Form, MainContainerColumn, Input, Select } from '../styles/Style';
 
 export const ApplicationFormPage = () => {
   const navigate = useNavigate();
@@ -28,11 +29,13 @@ export const ApplicationFormPage = () => {
   }
   
   return (
-    <div>ApplicationFormPage
-      <div>
-      <button onClick={() => goBack(navigate)}>Voltar</button>
-      <form onSubmit={apply}>
-        <select onChange={onChange} name="trip" value={form.trip} required>
+
+      <MainContainerColumn>
+        <div>
+      <Botao onClick={() => goBack(navigate)}>Voltar</Botao>
+      </div>
+      <Form onSubmit={apply}>
+        <Select onChange={onChange} name="trip" value={form.trip} required>
           <option value={''}>Escolha uma viagem</option>
           {trips && trips.trips.map((trip) => {
             return (
@@ -41,12 +44,12 @@ export const ApplicationFormPage = () => {
               </option>
             )
           })}
-        </select>
-        <input name='name' placeholder='Nome' value={form.name} onChange={onChange} required pattern={'^.{3,}'} title="Deve-se ter no mínimo 3 caracteres."/>
-        <input name='age' placeholder='Idade' value={form.age} onChange={onChange} type={'number'} required min={18} title="Apenas maiores de 18 anos"/>
-        <input name='applicationText' placeholder='Texto de candidatura' value={form.applicationText} onChange={onChange} pattern={'^.{30,}'} title={"Deve-se ter no mínimo 30 caracteres."} required />
-        <input name='profession' type="text" placeholder='Profissão' value={form.profession} onChange={onChange} pattern={'^.{4,}'} title={"Deve-se ter no mínimo 4 caracteres."} required />
-        <select onChange={onChange} name="country" value={form.country} required>
+        </Select>
+        <Input name='name' placeholder='Nome' value={form.name} onChange={onChange} required pattern={'^.{3,}'} title="Deve-se ter no mínimo 3 caracteres."/>
+        <Input name='age' placeholder='Idade' value={form.age} onChange={onChange} type={'number'} required min={18} title="Apenas maiores de 18 anos"/>
+        <Input name='applicationText' placeholder='Texto de candidatura' value={form.applicationText} onChange={onChange} pattern={'^.{30,}'} title={"Deve-se ter no mínimo 30 caracteres."} required />
+        <Input name='profession' type="text" placeholder='Profissão' value={form.profession} onChange={onChange} pattern={'^.{4,}'} title={"Deve-se ter no mínimo 4 caracteres."} required />
+        <Select onChange={onChange} name="country" value={form.country} required>
           <option value={''}>Escolha um país</option>
           {countries && countries.map((country) => {
             return (
@@ -55,10 +58,9 @@ export const ApplicationFormPage = () => {
               </option>
             )
           })}
-        </select>
-        <button type='submit'>Enviar</button>
-      </form>
-      </div>
-    </div>
-  )
+        </Select>
+        <Botao type='submit'>Enviar</Botao>
+      </Form>
+      </MainContainerColumn>
+        )
 }

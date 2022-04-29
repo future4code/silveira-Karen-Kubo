@@ -6,6 +6,8 @@ import Logo from '../img/logo.png'
 const Container = styled.div `
   height: 20vh;
   background-color: #F4E7EE;
+  display: flex;
+  justify-content: center;
 `
 
 const Imagem = styled.img `

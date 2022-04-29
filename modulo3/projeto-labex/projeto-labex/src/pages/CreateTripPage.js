@@ -5,6 +5,7 @@ import useProtectedPage from '../hooks/useProtectedPage';
 import useForm from '../hooks/useForm';
 import axios from 'axios';
 import { BASE_URL } from '../constants/Url';
+import {Botao, Form, Input, Select, MainContainerColumn} from '../styles/Style'
 
 export const CreateTripPage = () => {
   useProtectedPage();
@@ -27,15 +28,15 @@ export const CreateTripPage = () => {
       .catch((err) => {
         console.log(err.response.data.message)
       })
-      cleanFields();
+    cleanFields();
   }
   return (
-    <div>CreateTripPage
+    <MainContainerColumn>
       <div>
-        <button onClick={() => goBack(navigate)}>Voltar</button>
+        <Botao onClick={() => goBack(navigate)}>Voltar</Botao>
       </div>
-      <form onSubmit={submit}>
-        <input
+      <Form onSubmit={submit}>
+        <Input
           placeholder='Nome'
           name={'name'}
           value={form.name}
@@ -44,20 +45,20 @@ export const CreateTripPage = () => {
           pattern={"^.{5,}"}
           title={"O nome deve conter no mínimo 5 caracteres"}
         />
-        <select
+        <Select
           placeholder='Planeta'
           name={'planet'}
           value={form.planet}
           onChange={onChange}
           required>
-            <option value={""}>Escolha um planeta</option>
-            {planets.map((planet) => {
-              return (
-                <option key={planet}>{planet}</option>
-              )
-            })}
-          </select>
-        <input
+          <option value={""}>Escolha um planeta</option>
+          {planets.map((planet) => {
+            return (
+              <option key={planet}>{planet}</option>
+            )
+          })}
+        </Select>
+        <Input
           placeholder='Data'
           name={'date'}
           value={form.date}
@@ -66,7 +67,7 @@ export const CreateTripPage = () => {
           min={todaysDate}
           required
         />
-        <input
+        <Input
           placeholder='Descrição'
           name={'description'}
           value={form.description}
@@ -76,7 +77,7 @@ export const CreateTripPage = () => {
           pattern={"^.{20,}"}
           title={"A descrição deve conter no mínimo 30 caracteres"}
         />
-        <input
+        <Input
           placeholder='Duração'
           name={'durationInDays'}
           value={form.durationInDays}
@@ -86,9 +87,9 @@ export const CreateTripPage = () => {
           min={50}
           title={"A duração deve ter no mínimo 50 dias"}
         />
-        <button type='submit'>Criar</button>
-      </form>
+        <Botao type='submit'>Criar</Botao>
+      </Form>
 
-    </div>
+    </MainContainerColumn>
   )
 }
