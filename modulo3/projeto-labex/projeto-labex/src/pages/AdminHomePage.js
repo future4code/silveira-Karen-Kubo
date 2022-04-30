@@ -67,8 +67,8 @@ export const AdminHomePage = () => {
       <Card key={trip.id}>
         <p><strong>Nome:</strong> {trip.name}</p>
         <div>
-        <Botao onClick={() => goToTripDetailsPage(navigate, trip.id)}>Details</Botao>
-        <Botao onClick={() => removeATrip(trip.id)}>Remove</Botao>
+        <Botao onClick={() => goToTripDetailsPage(navigate, trip.id)}>Detalhes</Botao>
+        <Botao onClick={() => removeATrip(trip.id)}>Remover</Botao>
         </div>
       </Card>
     )
