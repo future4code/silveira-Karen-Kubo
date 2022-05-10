@@ -33,13 +33,6 @@ const GlobalState = (props) => {
         }
     }, [])
 
-    useEffect(() => {
-        if (token !== null) {
-            getPosts();
-        }
-    }, [posts])
-    
-
     const states = {posts, comments, postInfo}
     const setters = {setPosts, setComments, setPostInfo}
     const values = {token, headers}

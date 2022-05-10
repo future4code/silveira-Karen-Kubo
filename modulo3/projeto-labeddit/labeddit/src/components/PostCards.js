@@ -13,8 +13,9 @@ import { BASE_URL } from "../constants/urls";
 
 const PostCards = (props) => {
     const navigate = useNavigate();
-    const {values} = useContext(GlobalStateContext);
+    const {values, requests} = useContext(GlobalStateContext);
     const { headers } = values
+    const {getPosts} = requests
 
     const handleVote = (id, direction) => {
         const body = {
@@ -25,7 +26,7 @@ const PostCards = (props) => {
             axios
                 .post(`${BASE_URL}/posts/${id}/votes`, body, headers)
                 .then((res) => {
-                    console.log(res)
+                    getPosts();
                 })
                 .catch((err) => {
                     console.log(err.response)
@@ -35,7 +36,7 @@ const PostCards = (props) => {
             axios
                 .put(`${BASE_URL}/posts/${id}/votes`, body, headers)
                 .then((res) => {
-                    console.log(res)
+                    getPosts();
                 })
                 .catch((err) => {
                     console.log(err.response)
@@ -45,7 +46,7 @@ const PostCards = (props) => {
             axios
                 .delete(`${BASE_URL}/posts/${id}/votes`, headers)
                 .then((res) => {
-                    console.log(res)
+                    getPosts();
                 })
                 .catch((err) => {
                     console.log(err.response)

@@ -11,8 +11,9 @@ import { Button, Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const CommentsCards = (props) => {
-    const { values } = useContext(GlobalStateContext)
+    const {values, requests} = useContext(GlobalStateContext);
     const { headers } = values
+    const {getPosts} = requests
 
     const handleVote = (id, direction) => {
         const body = {
@@ -23,7 +24,7 @@ const CommentsCards = (props) => {
             axios
                 .post(`${BASE_URL}/comments/${id}/votes`, body, headers)
                 .then((res) => {
-                    console.log(res)
+                    getPosts();
                 })
                 .catch((err) => {
                     console.log(err.response)
@@ -33,7 +34,7 @@ const CommentsCards = (props) => {
             axios
                 .put(`${BASE_URL}/comments/${id}/votes`, body, headers)
                 .then((res) => {
-                    console.log(res)
+                    getPosts();
                 })
                 .catch((err) => {
                     console.log(err.response)
@@ -43,7 +44,7 @@ const CommentsCards = (props) => {
             axios
                 .delete(`${BASE_URL}/comments/${id}/votes`, headers)
                 .then((res) => {
-                    console.log(res)
+                    getPosts();
                 })
                 .catch((err) => {
                     console.log(err.response)
