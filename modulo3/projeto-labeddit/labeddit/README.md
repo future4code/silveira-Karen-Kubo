@@ -1,7 +1,7 @@
 # LABEDDIT - Rede Social
 (com React.js - custom hooks, styled-components, react-router e axios)
 
-# Link: [Clique aqui para ir para o site!](https://labeddit-karen-kubo.surge.sh/)
+# Link: [Labeddit](https://labeddit-karen-kubo.surge.sh/)
 
 ## Página de Login:
 A página de login possui dois campos de texto: email e senha. O comportamento será o mesmo da página de login feita no projeto LabeX. Ao fazer o login, o usuário deverá ser redirecionado para a página de feed.

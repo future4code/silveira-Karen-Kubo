@@ -8,3 +8,8 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 `
+
+export const Body = styled.div`
+    min-height: 80vh;
+    background-color: #D3D9DB;
+`

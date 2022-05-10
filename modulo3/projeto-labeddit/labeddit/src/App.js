@@ -1,6 +1,6 @@
 import GlobalState from './global/GlobalState';
 import Router from './routes/Router';
-import { GlobalStyle } from './styles';
+import { GlobalStyle, Body } from './styles';
 import Header from './components/Header';
 
 const App = () => {
@@ -9,7 +9,9 @@ const App = () => {
         <GlobalState>
             <GlobalStyle />
             <Header/>
+            <Body>
             <Router />
+            </Body>
         </GlobalState>
 
     </>
