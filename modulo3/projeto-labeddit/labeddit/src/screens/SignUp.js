@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/urls';
 import { useForm } from '../hooks/useForm'
 import { goToFeed, goToLogin } from '../routes/Coordinator';
+import { Form, Card, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { DivSignUp } from '../styles/SignUp-style';
 
 export default function SignUp() {
   const {form, onChange, cleanFields} = useForm({
@@ -27,9 +30,10 @@ export default function SignUp() {
     })
   }
   return (
-    <>
-      <form onSubmit={submit}>
-        <input
+    <DivSignUp>
+      <Form onSubmit={submit} style={{display: "flex", flexDirection: "column", rowGap: "10px"}}>
+        <Form.Group>
+        <Form.Control
         name="username"
         placeholder="Usuário"
         onChange={onChange}
@@ -39,7 +43,9 @@ export default function SignUp() {
         title={"É necessário no mínimo 5 caracteres."}    
         required 
         />
-        <input
+        </Form.Group>
+        <Form.Group>
+        <Form.Control
         name="email"
         placeholder="E-mail"
         onChange={onChange}
@@ -47,7 +53,9 @@ export default function SignUp() {
         type="email"
         required 
         />
-        <input
+        </Form.Group>
+        <Form.Group>
+        <Form.Control
         name="password"
         placeholder="Senha"
         onChange={onChange}
@@ -57,9 +65,10 @@ export default function SignUp() {
         title={"A senha deve possuir no mínimo 8 e no máximo 30 caracteres."}    
         required 
         />
-        <button>Criar</button>
-      </form>
-      <button onClick={()=>goToLogin(navigate)}>Voltar</button>
-    </>
+        </Form.Group>
+        <Button variant='dark'>Criar</Button>
+      </Form>
+      <Button variant='dark' onClick={()=>goToLogin(navigate)}>Voltar</Button>
+    </DivSignUp>
   )
 }

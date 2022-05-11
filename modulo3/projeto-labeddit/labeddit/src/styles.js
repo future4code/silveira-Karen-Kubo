@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { createGlobalStyle } from "styled-components"
-
+import './styles'
 export const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
@@ -11,5 +11,9 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Body = styled.div`
     min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #D3D9DB;
+    font-family: 'Roboto', sans-serif;
 `

@@ -4,6 +4,9 @@ import { goToSignUp, goToFeed } from "../routes/Coordinator"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {BASE_URL} from "../constants/urls"
+import { Form, Button, Card } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { BodyLogin } from '../styles/Login-style';
 
 export default function Login() {
 
@@ -29,9 +32,11 @@ export default function Login() {
 
   return (
     <>
-    <div>
-      <form onSubmit={login}>
-        <input
+    <BodyLogin>
+      <Form onSubmit={login} style={{width: "320px", display: "flex", flexDirection: "column", rowGap: "10px", marginBottom: "10px"}}>
+        <Form.Group>
+          <Form.Label>E-mail: </Form.Label>
+        <Form.Control
           placeholder="E-mail"
           type={"email"}
           required
@@ -39,7 +44,10 @@ export default function Login() {
           value={form.email}
           name={"email"}
         />
-        <input
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>Senha: </Form.Label>
+        <Form.Control
           placeholder="Senha"
           type={"password"}
           required
@@ -47,10 +55,11 @@ export default function Login() {
           value={form.password}
           name={"password"}
         />
-        <button>Entrar</button>
-      </form>
-      <button onClick={()=>goToSignUp(navigate)}>Criar conta</button>
-      </div>
+        </Form.Group>
+        <Button variant='dark' type='submit'>Entrar</Button>
+      </Form>
+      <Button variant='dark' onClick={()=>goToSignUp(navigate)} style={{width: "320px"}}>Criar conta</Button>
+      </BodyLogin>
     </>
   )
 }
