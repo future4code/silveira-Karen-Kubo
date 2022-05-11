@@ -56,7 +56,7 @@ export default function Feed() {
       <Button variant='dark' onClick={logout} style={{ alignSelf: "center"}}>Logout</Button>
       <DivForm> 
         <StyledForm onSubmit={createPost} style={{ width: "320px" }}>          
-            <label>Titulo:</label>
+            <label htmlFor='title'>Titulo:</label>
             <TextareaTitulo
               aria-multiline='true'
               name='title'

@@ -95,7 +95,7 @@ export default function Post() {
           </Detalhes>
           <DivForm>
             <StyledForm onSubmit={createComment}>
-              <label for="body"></label>
+              <label htmlFor="body"></label>
               <Textarea
                 type="text"
                 name='body'
