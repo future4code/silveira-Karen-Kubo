@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { goToLogin } from '../routes/Coordinator';
 import GlobalStateContext from '../global/GlobalStateContext'
@@ -6,8 +6,9 @@ import axios from 'axios';
 import { BASE_URL } from '../constants/urls';
 import { useForm } from "../hooks/useForm"
 import PostCards from '../components/PostCards';
-import { DivBody, DivCards, DivForm, StyledForm, Textarea, TextareaTitulo } from '../styles/Feed-style';
+import { ReactPaginateBox, DivBody, DivCards, DivForm, StyledForm, Textarea, TextareaTitulo } from '../styles/Feed-style';
 import Loading from "../assets/Loading.gif"
+import Pagination from '../components/Pagination'
 import { Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -38,18 +39,28 @@ export default function Feed() {
   }
 
   //Listando posts  
-  const { states, values } = useContext(GlobalStateContext);
-  const { posts } = states
+  const { states, setters, values } = useContext(GlobalStateContext);
+  const { posts, currentPage, postsPerPage } = states
+  const { setCurrentPage, setPostsPerpage } = setters
   const { headers } = values
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  const listOfPosts = posts.map((post) => {
+
+  const listOfPosts = posts && posts
+  .slice(indexOfFirstPost, indexOfLastPost)
+  .map((post) => {
     return (
       <PostCards
         post={post}
       />
     )
   })
+
+  const changePage = (number) => {
+    setCurrentPage(number);
+  }
 
   return (
     <DivBody>
@@ -82,6 +93,7 @@ export default function Feed() {
       <DivCards>
         {listOfPosts.length > 0 ? listOfPosts : <img src={Loading} alt="Loading" />}
       </DivCards>
+      <Pagination postsPerPage={postsPerPage} paginate={changePage}/>
     </DivBody>
   )
 }

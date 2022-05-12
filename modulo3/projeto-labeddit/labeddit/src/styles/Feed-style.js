@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import ReactPaginate from "react-paginate";
+
 
 export const Icon = styled.img `
     width: 32px;
@@ -70,4 +72,8 @@ export const Icones = styled.button `
     border: none;
     cursor: pointer;
     padding-left: 10px;
+`
+
+export const ReactPaginateBox = styled(ReactPaginate)`
+
 `

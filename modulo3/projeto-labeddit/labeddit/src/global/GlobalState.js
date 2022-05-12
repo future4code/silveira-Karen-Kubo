@@ -9,6 +9,9 @@ const GlobalState = (props) => {
     const [posts, setPosts] = useState([]);
     const [comments, setComments] = useState([]);
     const [postInfo, setPostInfo] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerpage] = useState(10);
+
 
     const token = window.localStorage.getItem("token");
     const headers = { headers: {
@@ -18,7 +21,7 @@ const GlobalState = (props) => {
 
     const getPosts = () => {
         axios
-        .get(`${BASE_URL}/posts`, headers)
+        .get(`${BASE_URL}/posts?page=${currentPage}&size=${postsPerPage}`, headers)
         .then((res) => {
             setPosts(res.data)
         })
@@ -33,8 +36,8 @@ const GlobalState = (props) => {
         }
     }, [])
 
-    const states = {posts, comments, postInfo}
-    const setters = {setPosts, setComments, setPostInfo}
+    const states = {posts, comments, postInfo, currentPage, postsPerPage}
+    const setters = {setPosts, setComments, setPostInfo, setCurrentPage, setPostsPerpage}
     const values = {token, headers}
     const requests = {getPosts}
     return (
