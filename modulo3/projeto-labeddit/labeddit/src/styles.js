@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const Body = styled.div`
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;

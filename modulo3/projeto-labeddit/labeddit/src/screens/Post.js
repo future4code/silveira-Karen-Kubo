@@ -104,7 +104,7 @@ export default function Post() {
                 value={form.body}
                 required
               />
-              <Button variant='dark' type="submit">Enviar</Button>
+              <Button variant='dark' type="submit" style={{marginBottom: "20px"}}>Enviar</Button>
             </StyledForm>
           </DivForm>
           <Comentarios>

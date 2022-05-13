@@ -6,7 +6,7 @@ import axios from 'axios';
 import { BASE_URL } from '../constants/urls';
 import { useForm } from "../hooks/useForm"
 import PostCards from '../components/PostCards';
-import { ReactPaginateBox, DivBody, DivCards, DivForm, StyledForm, Textarea, TextareaTitulo } from '../styles/Feed-style';
+import { DivBody, DivCards, DivForm, StyledForm, Textarea, TextareaTitulo, ImgLoading } from '../styles/Feed-style';
 import Loading from "../assets/Loading.gif"
 import Pagination from '../components/Pagination'
 import { Button } from 'react-bootstrap'
@@ -41,7 +41,7 @@ export default function Feed() {
   //Listando posts  
   const { states, setters, values } = useContext(GlobalStateContext);
   const { posts, currentPage, postsPerPage } = states
-  const { setCurrentPage, setPostsPerpage } = setters
+  const { setCurrentPage } = setters
   const { headers } = values
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -64,7 +64,7 @@ export default function Feed() {
 
   return (
     <DivBody>
-      <Button variant='dark' onClick={logout} style={{ alignSelf: "center"}}>Logout</Button>
+      <Button variant='dark' onClick={logout} style={{ alignSelf: "center", marginTop: '10px'}}>Logout</Button>
       <DivForm> 
         <StyledForm onSubmit={createPost} style={{ width: "320px" }}>          
             <label htmlFor='title'>Titulo:</label>
@@ -91,7 +91,7 @@ export default function Feed() {
       </DivForm>
 
       <DivCards>
-        {listOfPosts.length > 0 ? listOfPosts : <img src={Loading} alt="Loading" />}
+        {listOfPosts.length > 0 ? listOfPosts : <ImgLoading src={Loading} alt="Loading" />}
       </DivCards>
       <Pagination postsPerPage={postsPerPage} paginate={changePage}/>
     </DivBody>

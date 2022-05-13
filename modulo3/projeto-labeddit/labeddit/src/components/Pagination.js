@@ -12,7 +12,7 @@ export const Pagination = ({ postsPerPage, paginate }) => {
         <nav className='pagination mt-3'>
             {pageNumbers.map(number => (
                 <li key={number} className="page-item">
-                    <Button variant='dark' onClick={() => paginate(number)}>
+                    <Button variant='dark' onClick={() => paginate(number)} className='dark mb-3'>
                         {number}
                     </Button> {' '}
 

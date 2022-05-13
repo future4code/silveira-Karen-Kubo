@@ -6,7 +6,8 @@ import axios from 'axios';
 import {BASE_URL} from "../constants/urls"
 import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BodyLogin } from '../styles/Login-style';
+import { BodyLogin, Img, DivForm } from '../styles/Login-style';
+import People from '../assets/people.png'
 
 export default function Login() {
 
@@ -33,7 +34,9 @@ export default function Login() {
   return (
     <>
     <BodyLogin>
-      <Form onSubmit={login} style={{width: "320px", display: "flex", flexDirection: "column", rowGap: "10px", marginBottom: "10px"}}>
+      <Img src={People} alt='people'/>
+      <DivForm>
+      <Form onSubmit={login} style={{display: "flex", flexDirection: "column", rowGap: "10px", marginBottom: "10px"}}>
         <Form.Group>
           <Form.Label>E-mail: </Form.Label>
         <Form.Control
@@ -58,7 +61,8 @@ export default function Login() {
         </Form.Group>
         <Button variant='dark' type='submit'>Entrar</Button>
       </Form>
-      <Button variant='dark' onClick={()=>goToSignUp(navigate)} style={{width: "320px"}}>Criar conta</Button>
+      <Button variant='dark' onClick={()=>goToSignUp(navigate)} >Criar conta</Button>
+      </DivForm>
       </BodyLogin>
     </>
   )
