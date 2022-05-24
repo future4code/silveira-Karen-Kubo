@@ -71,7 +71,7 @@ export default function SignUp() {
             required
           />
         </Form.Group>
-        <Button variant='dark'>Criar</Button>
+        <Button variant='dark' type='submit'>Criar</Button>
       </Form>
       </DivForm>
     </DivSignUp>

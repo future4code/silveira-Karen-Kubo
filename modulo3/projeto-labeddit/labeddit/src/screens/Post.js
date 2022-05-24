@@ -49,12 +49,12 @@ export default function Post() {
       .post(`${BASE_URL}/posts/${params.id}/comments`, form, headers)
       .then((res) => {
         alert(`Comentario adicionado com sucesso!`)
+        getComments()
         cleanFields()
       })
       .catch((err) => {
         alert(err)
       })
-    event.reload()
   }
 
   useEffect(() => {
