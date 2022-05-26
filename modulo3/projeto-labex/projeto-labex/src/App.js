@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import styled from 'styled-components';
+import React from 'react';
+import { Router } from './routes/Router';
+import Header from './pages/Header';
 
-function App() {
+const MainContainer = styled.div `
+  min-height: 80vh;
+  background-color: #967b8a;
+`
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header/>
+    <MainContainer>
+      <Router/>
+    </MainContainer>
+    </>
   );
 }
 
