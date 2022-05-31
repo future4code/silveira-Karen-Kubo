@@ -1,0 +1,16 @@
+{
+  "name": "introducao-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
