@@ -146,7 +146,7 @@ app.get("/task/:id", async (req: Request, res: Response) => {
             let result = await connection(`Task`).select(`*`).where({ taskId: idParams })
             console.log(result[0])
             if (result.length > 0) {
-                let myDate = new Date (result[0].limit_date.toDateString());
+                let myDate = new Date(result[0].limit_date.toDateString());
                 let getDate = myDate.getDate();
                 let getMonth = myDate.getMonth();
                 let getYear = myDate.getFullYear();
@@ -158,6 +158,81 @@ app.get("/task/:id", async (req: Request, res: Response) => {
 
         }
 
+    } catch (error: any) {
+        if (res.statusCode == 200) {
+            res.status(500).send({ message: error.sqlMessage || error.message })
+        } else {
+            res.status(errorCode).send({ message: error.sqlMessage || error.message })
+        }
+    }
+})
+
+//6 - Pegar todas as tarefas
+app.get("/user", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        let result = await connection(`User`).select(`*`)
+        res.status(200).send({ users: result })
+    }
+
+    catch (error: any) {
+        if (res.statusCode == 200) {
+            res.status(500).send({ message: error.sqlMessage || error.message })
+        } else {
+            res.status(errorCode).send({ message: error.sqlMessage || error.message })
+        }
+    }
+})
+
+//7 - Pegar tarefas criadas por um usuário
+app.get("/task", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const creatorUserId = req.query.creatorUserId;
+        if (!creatorUserId) {
+            errorCode = 401;
+            throw new Error("Please check the query for creatorUserId")
+        } else {
+            const result = await connection(`Task`).select(`*`).where({ creatorUserId: creatorUserId })
+            if (result.length > 0) {
+                result.forEach((res) => {
+                    let date = new Date(res.limit_date.toDateString());
+                    let getDate = date.getDate();
+                    let getMonth = date.getMonth();
+                    let getYear = date.getFullYear();
+                    res.limit_date = `${getDate}/${getMonth}/${getYear}`
+                })
+                res.status(200).send({ tasks: result })
+            } else {
+                res.status(200).send({ tasks: [] })
+            }
+        }
+    } catch (error: any) {
+        if (res.statusCode == 200) {
+            res.status(500).send({ message: error.sqlMessage || error.message })
+        } else {
+            res.status(errorCode).send({ message: error.sqlMessage || error.message })
+        }
+    }
+})
+
+//8 - Pesquisar usuário 
+app.get("/task", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const nickname = req.query.nickname;
+        if (!nickname) {
+            errorCode = 401;
+            throw new Error("Please check the query for nickname")
+        } else {
+            const result = await connection(`User`).select(`id, nickname`).where({ nickname: nickname })
+ 
+            if (result.length > 0) {
+                res.status(200).send({ User: result })
+            } else {
+                res.status(200).send({ User: [] })
+            }
+        }
     } catch (error: any) {
         if (res.statusCode == 200) {
             res.status(500).send({ message: error.sqlMessage || error.message })
