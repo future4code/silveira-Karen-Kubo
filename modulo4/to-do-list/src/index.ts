@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import app from "./app";
 import connection from "./connection";
-import { Task, User } from "./data";
+import { Task, User, Task_responsible } from "./data";
 
 //1- Criar usuário
 app.post("/user", async (req: Request, res: Response) => {
@@ -144,7 +144,6 @@ app.get("/task/:id", async (req: Request, res: Response) => {
             throw new Error("Please check the params from ID")
         } else {
             let result = await connection(`Task`).select(`*`).where({ taskId: idParams })
-            console.log(result[0])
             if (result.length > 0) {
                 let myDate = new Date(result[0].limit_date.toDateString());
                 let getDate = myDate.getDate();
@@ -226,11 +225,75 @@ app.get("/task", async (req: Request, res: Response) => {
             throw new Error("Please check the query for nickname")
         } else {
             const result = await connection(`User`).select(`id, nickname`).where({ nickname: nickname })
- 
+
             if (result.length > 0) {
                 res.status(200).send({ User: result })
             } else {
                 res.status(200).send({ User: [] })
+            }
+        }
+    } catch (error: any) {
+        if (res.statusCode == 200) {
+            res.status(500).send({ message: error.sqlMessage || error.message })
+        } else {
+            res.status(errorCode).send({ message: error.sqlMessage || error.message })
+        }
+    }
+})
+
+//9- Atribuir um usuário responsável a uma tarefa
+app.post("/task/responsible", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const { task_id, responsible_user_id } = req.body;
+        if (!task_id || !responsible_user_id) {
+            errorCode = 422;
+            throw new Error("Please check the fields!")
+        } else {
+            const validateUser = await connection(`User`).select(`*`).where({ id: responsible_user_id })
+            const validateTask = await connection(`Task`).select(`*`).where({ taskId: task_id })
+            if (validateTask.length > 0 && validateUser.length > 0) {
+                const taskResponsible: Task_responsible = {
+                    task_id,
+                    responsible_user_id
+                }
+
+                await connection(`Task_responsible`).insert(taskResponsible)
+                res.status(201).send({ User: taskResponsible })
+            } else {
+                errorCode = 404;
+                throw new Error("Task or user was not found")
+            }
+
+        }
+
+    } catch (error: any) {
+        if (res.statusCode == 200) {
+            res.status(500).send({ message: error.sqlMessage || error.message })
+        } else {
+            res.status(errorCode).send({ message: error.sqlMessage || error.message })
+        }
+    }
+})
+
+//9- Pegar usuários responsáveis por uma tarefa
+app.get("/task/:id/responsible", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const id = req.params.id;
+        if (!id) {
+            errorCode = 401;
+            throw new Error("Please check the params!")
+        } else {
+            let result = await connection.raw(`
+            SELECT User.id, User.nickname FROM User JOIN Task ON User.id = Task.creatorUserId WHERE taskId = ${id}
+            `)
+            result = result[0]
+            if (result[0] === null || result[0] === undefined) {
+                errorCode = 404;
+                throw new Error(`Task was not found`)
+            } else if (result[0].nickname && result[0].id) {
+                res.status(200).send({ user: result })
             }
         }
     } catch (error: any) {
