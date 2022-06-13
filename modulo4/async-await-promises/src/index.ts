@@ -82,9 +82,22 @@ const notifyUsersPromiseAll = async (users: User[], message: string): Promise<vo
         await Promise.all(requests)
     }
     catch (err: any) {
-        console.log(err.response?.data || err.message)
+        const res = err.response?.data || err.message;
+        console.log(res)
     }
 }
+
+const main = async (): Promise<void> => {
+    try {
+        const subscribers = await getSubscribers();
+        await publishNews("Title", "Content", 13062022);
+        await notifyUsers(subscribers, "Verifique o nosso novo post!");        
+    } catch (error:any) {
+        const res = error.response?.data || error.message;
+        console.log(res)
+    }
+}
+main();
 
 // Desafio
 function hello () {
