@@ -1,0 +1,11 @@
+GET http://localhost:3003/users/
+Content-Type: application/json
+
+# GET http://localhost:3003/users/Teach
+# Content-Type: application/json
+
+# GET http://localhost:3003/users?sort=&order=ASC
+# Content-Type: application/json
+
+# GET http://localhost:3003/users?page=6
+# Content-Type: application/json
