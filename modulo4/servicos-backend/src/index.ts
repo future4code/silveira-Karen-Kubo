@@ -17,3 +17,5 @@ const server = app.listen(process.env.PORT || 3003, () => {
 app.get("/address/:cep", getFullAddress);
 
 app.post("/user/:cep", insertAdress);
+
+console.log(`mensagem`)
