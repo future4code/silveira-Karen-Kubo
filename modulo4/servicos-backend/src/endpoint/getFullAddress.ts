@@ -3,9 +3,8 @@ import { Address } from "../types/Address"
 import { Request, Response } from 'express';
 
 
-export const getFullAddress = async (cep: string):Promise<Address | undefined> => {
+export const getFullAddress = async (cep:string):Promise<Address | undefined> => {
     try {
-        
         const result = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         
         
@@ -16,7 +15,7 @@ export const getFullAddress = async (cep: string):Promise<Address | undefined> =
             cidade: result.data.localidade,
             estado: result.data.uf
         }
-
+        console.log(address)
         return address;
 
     } catch (error) {
