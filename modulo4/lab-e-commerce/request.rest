@@ -1,0 +1,12 @@
+GET https://lab-e-commerce-labenu.herokuapp.com/products?order=localhost:3003/products?order=desc
+
+###
+
+GET https://lab-e-commerce-labenu.herokuapp.com/users
+Content-Type: application/json
+
+
+###
+
+GET https://lab-e-commerce-labenu.herokuapp.com/users/1655472464628/purchases
+Content-Type: application/json
