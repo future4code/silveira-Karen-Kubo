@@ -97,16 +97,14 @@ export class UserDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message);
         }
     }
-    // ACHAR USUÁRIO => VER LISTA DE SEGUIDORES => VERIFICAR QUAIS RECEITAS CRIARAM
-
+    
     public async findRecipesFromUsers(user_id: string): Promise<any[]> {
-        try {
-   
+        try {   
             const result = await BaseDatabase.connection.select(`RECIPE.id`, `RECIPE.title`, `RECIPE.description`, `RECIPE.createdAt`, `RECIPE.user_id`, `USER.name`)
             .from("USER_FOLLOWS")
             .innerJoin("USER", "USER.id", "USER_FOLLOWS.user_followed")
             .innerJoin('RECIPE', 'RECIPE.user_id', 'USER_FOLLOWS.user_followed')
-            .whereNot(`USER.id`, `=`, `${user_id}`)
+            .where(`USER_FOLLOWS.user_id`, `=`, `${user_id}`)
 
             return result;
             
@@ -115,5 +113,21 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
+    public async getUserId(id:string):Promise<any> {
+        try {
+            const [user] = await BaseDatabase.connection(`USER`).select(`id`).where({id})
 
+            return user;
+        } catch (error:any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
+    public async delete(id:string):Promise<void> {
+        try {
+            await BaseDatabase.connection(`USER`).where({id}).delete();
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
 }
