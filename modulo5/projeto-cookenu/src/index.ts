@@ -1,10 +1,13 @@
 import { app } from "./app";
 import { createRecipe } from "./endpoints/createRecipe";
+import { followUser } from "./endpoints/followUser";
 import { getAllUsers } from "./endpoints/getAllUsers";
+import { getFeed } from "./endpoints/getFeed";
 import { getRecipe } from "./endpoints/getRecipe";
 import { getUserByProfile } from "./endpoints/getUserByProfile";
 import { login } from "./endpoints/login";
 import { signUp } from "./endpoints/signUp";
+import { unfollowUser } from "./endpoints/unfollowUser";
 
 app.post("/user", signUp);
 app.post("/user/login", login);
@@ -12,3 +15,6 @@ app.get("/user", getAllUsers);
 app.get("/user/profile", getUserByProfile);
 app.post("/recipe", createRecipe);
 app.get("/recipe/:id", getRecipe);
+app.post("/user/follow", followUser);
+app.post("/user/unfollow", unfollowUser);
+app.get("/user/feed", getFeed);

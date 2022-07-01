@@ -4,6 +4,7 @@ export class Recipe {
         private title:string,
         private description:string,
         private createdAt:Date,
+        private user_id: string
     ) {};
     
     public getId():string{
@@ -18,7 +19,10 @@ export class Recipe {
     public getCreatedAt():Date{
         return this.createdAt;
     };
+    public getUserId():string{
+        return this.user_id;
+    };
     static toRecipeModel(data:any):Recipe{
-        return new Recipe(data.id, data.title, data.description, data.createdAt)
+        return new Recipe(data.id, data.title, data.description, data.createdAt, data.user_id)
     };
 }
