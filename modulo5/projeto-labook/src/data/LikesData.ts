@@ -20,7 +20,7 @@ export class LikesData extends BaseDatabase {
         try {
             await LikesData
                 .connection(this.table_name)
-                .update({ liked: likes.getLiked() })
+                .delete()
                 .where({ author_id: likes.getAuthorId(), post_id: likes.getPostId() })
         } catch (error: any) {
             let err = error.message || error.sqlMessage

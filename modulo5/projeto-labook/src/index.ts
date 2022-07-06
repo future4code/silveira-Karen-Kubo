@@ -65,7 +65,7 @@ const likesController = new LikesController(
     likesBusiness
 )
 app.post("/user/like", likesController.like)
-app.put("/user/like", likesController.dislike)
+app.delete("/user/like", likesController.dislike)
 //COMMENTS
 const commentBusiness = new CommentBusiness(
     new CommentData(),

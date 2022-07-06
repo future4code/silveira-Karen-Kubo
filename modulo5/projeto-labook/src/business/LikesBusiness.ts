@@ -77,8 +77,9 @@ export default class LikesBusiness {
             liked
         )
 
-        const postIsLiked = await this.likesData.findingLikes(connection);
-        if (postIsLiked.length===0) {
+        const [postIsLiked] = await this.likesData.findingLikes(connection);
+        console.log(postIsLiked)
+        if (!postIsLiked) {
             throw new Error(`Você não curtiu o post.`)
         }
 

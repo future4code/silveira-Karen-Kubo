@@ -38,7 +38,7 @@ export default class BefriendingBusiness {
         )
 
         const connectionExists = await this.befriendingData.findingConnection(newFriendship)
-        if(connectionExists) {
+        if(connectionExists.length>0) {
             throw new Error(`Você já segue essa pessoa!`)
         }
 
@@ -62,16 +62,15 @@ export default class BefriendingBusiness {
         if (!data) {
             throw new Error(`Usuário não encontrado!`)
         }
-
-        const findingUserToBefriend = await this.userData.findAccountById(user_befriended);
-        if (!findingUserToBefriend) {
-            throw new Error(`Usuário a ser deixado de seguir não encontrado`)
-        }
-
         const cancellingFriendship = new Befriending(
             data.id,
             user_befriended
         )
+        const findingUserToBefriend = await this.befriendingData.findingConnection(cancellingFriendship);
+
+        if (findingUserToBefriend.length===0) {
+            throw new Error(`Usuário a ser deixado de seguir não encontrado`)
+        }        
 
         const connectionExists = await this.befriendingData.findingConnection(cancellingFriendship)
         if(!connectionExists) {

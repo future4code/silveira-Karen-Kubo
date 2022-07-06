@@ -8,7 +8,7 @@ export class CommentController {
     ) { };
     //Comment
     comment = async (req: Request, res: Response) => {
-        const post_id = req.body.id as string;
+        const post_id = req.body.post_id as string;
         const comment = req.body.comment as string;
 
         const token = req.headers.authorization as string;
