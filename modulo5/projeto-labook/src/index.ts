@@ -40,8 +40,9 @@ const postController = new PostController(
     postBusiness
 )
 app.post("/post", postController.post)
-app.get("/post/:id", postController.getPost)
-app.get("/post", postController.getPostByType)
+app.get("/post/:id", postController.getPostById)
+app.get("/posts/:type", postController.getPostByType)
+app.get("/posts", postController.getPostsPerPage)
 //FRIENDS
 const befriendingBusiness = new BefriendingBusiness(
     new BefriendingData(),
