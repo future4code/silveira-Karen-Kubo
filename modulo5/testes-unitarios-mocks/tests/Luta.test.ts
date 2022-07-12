@@ -33,7 +33,6 @@ describe("Unit testando performAttack", () => {
                 return true;
             });
             const result = performAttack(a, b, validator as any);
-            console.log(result);
             expect(b.vida).toBe(220);
             expect(validator).toHaveBeenCalled();
             expect(validator).toHaveBeenCalledTimes(2);
@@ -67,6 +66,36 @@ describe("Unit testando performAttack", () => {
             expect(error.message).toBe(`Invalid Character`);
         } finally {
             expect.assertions(1);
+        }
+    })
+
+    test("d)Testando performAttack esperando nenhuma alteração da vida do defensor com função mockada" , () => {
+        try {
+            const a:Personagem = {
+                nome: "Atacante",
+                vida: 230,
+                defesa: 30,
+                forca: 90
+            };
+            const b:Personagem = {
+                nome: "Defensor",
+                vida: 290,
+                defesa: 100,
+                forca: 30
+            };
+            const validator = jest.fn(() => {
+                return true;
+            });
+            performAttack(a, b, validator as any);
+
+            expect(b.vida).toBe(290);
+            expect(validator).toHaveBeenCalled();
+            expect(validator).toHaveBeenCalledTimes(2);
+            expect(validator).toHaveReturnedTimes(2);
+        } catch (error:any) {
+            expect(error.message).toBe(`Invalid Character`);
+        } finally {
+            expect.assertions(4);
         }
     })
 })
