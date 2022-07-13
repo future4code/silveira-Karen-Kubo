@@ -25,4 +25,11 @@ export class UserDataMock {
                 return undefined
         }
     }
+    
+    getAllUsers = async (id:string) => {
+
+        const users = [UserMockAdmin, UserMockNormal]
+
+        return users;
+    }
 }

@@ -34,4 +34,11 @@ export class UserData {
 
         return user;
     }
+
+    getAllUsers = async (): Promise<User[]|undefined> => {
+        const users = await connection(`User_Arq`)
+            .select(`*`);
+
+        return users;
+    } 
 }
