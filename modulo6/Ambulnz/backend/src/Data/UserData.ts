@@ -33,7 +33,7 @@ export class UserData extends BaseDatabase {
     order = async (input:UserOrders) => {
         try {
             const user = await UserData
-                .connection(`Ambulnz_User`)
+                .connection(`Ambulnz_UserOrders`)
                 .insert({
                     user_id: input.getUserId(),
                     pizza_id: input.getPizzaId(),

@@ -39,3 +39,4 @@ CREATE TABLE
         FOREIGN KEY (pizza_id) REFERENCES Ambulnz_Pizza(id),
         FOREIGN KEY (user_id) REFERENCES Ambulnz_User(id)
     );
+SELECT * FROM Ambulnz_UserOrders;
