@@ -66,4 +66,20 @@ export class UserController {
             }
         }
     }
+
+    history = async (req: Request, res: Response) => {
+        const token = req.headers.authorization as string;
+  
+        try {
+            const results = await this.userBusiness.getOrders(token);
+            res.status(200).send(results);
+        } catch (error: any) {
+            const { statusCode, message } = error;
+            if (statusCode === 200) {
+                res.status(500).send(`Unexpected error!`);
+            } else {
+                res.status(statusCode || 400).send({ message });
+            }
+        }
+    }
 }

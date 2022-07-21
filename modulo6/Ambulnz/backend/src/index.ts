@@ -22,6 +22,7 @@ const userController = new UserController(
 app.post("/user/signup", userController.signUp);
 app.post("/user/login", userController.login);
 app.post("/user/order", userController.order);
+app.get("/user/order", userController.history);
 
 //Pizza
 const pizzaBusiness = new PizzaBusiness(

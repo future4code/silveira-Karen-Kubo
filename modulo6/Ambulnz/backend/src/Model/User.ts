@@ -24,13 +24,17 @@ export class UserOrders {
         private user_id:string,
         private pizza_id:string,
         private quantity:number,
-        private ordered_at:Date
+        private ordered_at:Date,
+        private pizza_name:string
     ) {}
     public getUserId = ():string => {
         return this.user_id;
     };
     public getPizzaId = ():string => {
         return this.pizza_id;
+    };
+    public getPizzaName = ():string => {
+        return this.pizza_name;
     };
     public getQuantity = ():number => {
         return this.quantity;

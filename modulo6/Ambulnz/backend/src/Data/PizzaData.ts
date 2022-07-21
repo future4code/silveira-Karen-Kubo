@@ -123,7 +123,13 @@ export class PizzaData extends BaseDatabase {
             .innerJoin(`Ambulnz_Pizza`, `Ambulnz_Pizza.id`, `Ambulnz_PizzaIngredients.pizza_id`)
             .innerJoin(`Ambulnz_Ingredient`, `Ambulnz_Ingredient.id`, `Ambulnz_PizzaIngredients.ingredient_id`)
             .where(`Ambulnz_Pizza.id`, `=`, `${pizza_id}`);
-            return ingredients;
+            const ingredientsNames = [];
+            if (ingredients.length>0) {
+                for (let ingredient of ingredients) {
+                    ingredientsNames.push(ingredient.name)
+                }
+            }
+            return ingredientsNames;
         } catch (error:any) {
             throw new CustomError(400, error.sqlMessage);
         }

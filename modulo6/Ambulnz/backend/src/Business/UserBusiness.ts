@@ -105,18 +105,42 @@ export class UserBusiness {
             if (!pizzaExists) {
                 throw new CustomError(404, `Pizza was not found!`);
             };
-
+            const pizza_name = pizzaExists.name;
             const user = this.tokenGenerator.verify(token);
             if(!user){
                 throw new CustomError(404, `User not found!`);
             };
             const user_id = user.id;
             const ordered_at = new Date(Date.now());
-            const newOrder = new UserOrders(user_id, pizza_id, quantity, ordered_at);
+            const newOrder = new UserOrders(user_id, pizza_id, quantity, ordered_at, pizza_name);
 
             await this.userData.order(newOrder);
 
             return newOrder;
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message);
+        }
+    }
+
+    getOrders = async (token:string) => {
+        try {
+           
+            if (!token) {
+                throw new CustomError(422, "Token has to be informed on headers as authorization");
+            };
+
+            const user = this.tokenGenerator.verify(token);
+            if(!user){
+                throw new CustomError(404, `User not found!`);
+            };
+            const user_id = user.id;
+            
+            const response = await this.userData.selectAllOrders(user_id);
+            if(response.length===0) {
+                throw new CustomError(404, `No orders were found!`)
+            }
+            
+            return response;
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
         }

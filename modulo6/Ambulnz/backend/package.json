@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "ts-node-dev ./src/index.ts",
-    "start": "node ./build/index.js",
+    "start": "node ./build/src/index.js",
     "build": "tsc",
+    "postinstall": "tsc",
     "test": "jest"
+  },
+  "engines": {
+    "node": "v16.14.0"
   },
   "keywords": [],
   "author": "",

@@ -32,14 +32,27 @@ export class UserData extends BaseDatabase {
 
     order = async (input:UserOrders) => {
         try {
-            const user = await UserData
+            await UserData
                 .connection(`Ambulnz_UserOrders`)
                 .insert({
                     user_id: input.getUserId(),
                     pizza_id: input.getPizzaId(),
                     quantity: input.getQuantity(),
-                    ordered_at: input.getOrderedAt()
+                    ordered_at: input.getOrderedAt(),
+                    pizza_name: input.getPizzaName()
                 });
+        } catch (error: any) {
+            throw new CustomError(400, error.sqlMessage);
+        }
+    }
+
+    selectAllOrders = async (user_id:string) => {
+        try {
+            const orders = await UserData
+                .connection(`Ambulnz_UserOrders`)
+                .select()
+                .where({user_id});
+            return orders;
         } catch (error: any) {
             throw new CustomError(400, error.sqlMessage);
         }

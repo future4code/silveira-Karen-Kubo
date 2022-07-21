@@ -34,6 +34,7 @@ CREATE TABLE
     Ambulnz_UserOrders (
         user_id VARCHAR(255) NOT NULL,
         pizza_id VARCHAR(255) NOT NULL,
+        pizza_name VARCHAR(255) NOT NULL,
         quantity INT NOT NULL DEFAULT 0,
         ordered_at DATE NOT NULL,
         FOREIGN KEY (pizza_id) REFERENCES Ambulnz_Pizza(id),
