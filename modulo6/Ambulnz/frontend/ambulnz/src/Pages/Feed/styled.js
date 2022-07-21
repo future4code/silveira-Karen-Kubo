@@ -12,6 +12,7 @@ export const Main = styled.div `
 export const CardsDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     row-gap:20px;
     column-gap: 20px;
 `

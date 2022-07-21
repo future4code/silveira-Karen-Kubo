@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import GlobalStateContext from './../Global/GlobalStateContext';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const style = {
     position: 'absolute',
@@ -20,7 +21,8 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 1,
+    mx: "auto"
 };
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -73,20 +75,30 @@ export default function BasicModal(props) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ p: 2 }}>
                         Selecione a quantidade:
                     </Typography>
-                    
-                        <select value={qtd} onChange={onChangeQuantity}>
-                        <option key={0} value={0}>{0}</option>
-                            {numbers.map((qnt) => {
-                                return (
-                                    <option key={qnt} value={qnt}>{qnt}</option>
-                                )
-                            })
-                            }
-                        </select>
-                   
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Quantidade</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={qtd}
+                                key={qtd}
+                                label="Quantidade"
+                                onChange={onChangeQuantity}
+                            >
+                                <MenuItem key={0} value={0}>0</MenuItem>
+                                {numbers.map((qnt) => {
+                                    return (
+                                        <MenuItem key={qnt} value={qnt}>{qnt}</MenuItem>
+                                    )
+                                })
+                                }
+                            </Select>
+                        </FormControl>
+                    </Box>
                     <Button onClick={() => order(props.id, props.name, qtd, props.handleClose)}>Comprar</Button>
                 </Box>
             </Modal>

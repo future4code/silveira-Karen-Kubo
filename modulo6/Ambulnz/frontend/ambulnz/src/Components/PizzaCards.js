@@ -20,7 +20,7 @@ export default function PizzaCards(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
-        <Card sx={{ maxWidth: 345, display:"flex", flexDirection:"column", alignItems:"center" }} key={props.id}>
+        <Card sx={{ maxWidth: 345, display:"flex", flexDirection:"column", alignItems:"center", position:"relative" }} key={props.id}>
             <CardMedia
                 component="img"
                 image={props.photo_link}
@@ -41,8 +41,8 @@ export default function PizzaCards(props) {
                     name={props.name}
                 />
             </CardContent>
-            <CardActions>
-                <Button size="small" onClick={handleOpen}>Comprar</Button>
+            <CardActions sx={{display:"flex", justifyContent: "flex-end", position: "absolute", bottom:"0", right:"0"}}>
+                <Button size="large" onClick={handleOpen} color="primary">Comprar</Button>
             </CardActions>
         </Card>
     );

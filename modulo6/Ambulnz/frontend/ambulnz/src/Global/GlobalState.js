@@ -39,7 +39,7 @@ const GlobalState = (props) => {
 
     const getPizza = (id) => {
         axios
-            .get(`${BASE_URL}/pizza`)
+            .get(`${BASE_URL}/pizza/${id}`)
             .then((res) => {
                 setPizza(res.data);
             })
@@ -55,20 +55,16 @@ const GlobalState = (props) => {
 
     const getOrdersHistory = () => {
         axios
-            .get(`${BASE_URL}/user/order`)
+            .get(`${BASE_URL}/user/order`, headers)
             .then((res) => {
+                console.log(res.data)
                 setOrders(res.data);
             })
             .catch((err) => {
-                MySwal.fire({
-                    title: 'Erro',
-                    text: `${err.response.data.message}`,
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+                console.log(err.response.data.message);
             })
     }
-
+    
     const values = { token, headers };
     const states = { orders, cart, qtd, pizzas, pizza };
     const setters = { setOrders, setCart, setQtd, setPizzas, setPizza };

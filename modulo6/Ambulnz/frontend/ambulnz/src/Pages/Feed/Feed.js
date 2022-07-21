@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../Components/Footer";
+import ResponsiveAppBar from "../../Components/Header";
 import PizzaCards from "../../Components/PizzaCards";
 import { goToLogin } from "../../Routes/coordinator";
 import GlobalStateContext from './../../Global/GlobalStateContext';
@@ -11,15 +13,9 @@ export const Feed = () => {
     const { states, requests } = useContext(GlobalStateContext);
     const { getPizzas } = requests;
     const { pizzas } = states;
-
-    const logout = () => {
-        localStorage.removeItem("token");
-        goToLogin(navigate);
-    };
-
+    
     useEffect(() => {
         localStorage.getItem("token") !== null ? getPizzas() : goToLogin(navigate)
-
     }, []);
 
     const allPizzas = pizzas && pizzas.map((pizza) => {
@@ -36,10 +32,11 @@ export const Feed = () => {
 
     return (
         <Main>
-            <Button variant="contained" type="submit" onClick={logout}>Logout</Button>
+            <ResponsiveAppBar/>
             <CardsDiv>
                 {allPizzas}
             </CardsDiv>
+            <Footer/>
         </Main>
     )
 }
