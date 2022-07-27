@@ -36,7 +36,22 @@ export class ClientController {
         } catch (error:any) {
             const {statusCode, message} = error;
             if (statusCode === 200) {
-                res.status(500).send(`Erro ao fazer login!`);
+                res.status(500).send(`Erro ao criar cartão!`);
+            } else {
+                res.status(statusCode || 400).send({ message });
+            }
+        };
+    }; 
+
+    seeInfoFromCards = async (req:Request, res:Response) => {
+        const token = req.headers.authorization as string;
+        try {
+            const data = await this.clientBusiness.seeAllCards(token);
+            res.status(201).send({data:data});
+        } catch (error:any) {
+            const {statusCode, message} = error;
+            if (statusCode === 200) {
+                res.status(500).send(`Erro ao ver informações dos cartões!`);
             } else {
                 res.status(statusCode || 400).send({ message });
             }

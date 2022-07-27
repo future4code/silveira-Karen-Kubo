@@ -23,6 +23,7 @@ const clientController = new ClientController(
 app.post("/user/signup", clientController.signUp);
 app.post("/user/login", clientController.login);
 app.post("/user/card", clientController.createCard);
+app.get("/user/card", clientController.seeInfoFromCards);
 //Pagamentos
 const transactionBusiness = new TransactionBusiness(
     new TransactionData(),

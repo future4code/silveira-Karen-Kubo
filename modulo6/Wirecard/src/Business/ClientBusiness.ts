@@ -98,11 +98,33 @@ export class ClientBusiness {
                 expiration_date,
                 cvv
             );
+
+            await this.clientData.createCardManagement(infoCard);
+
             const data = {
                 generateToken,
                 infoCard
             };
             return data;
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message)
+        }
+    }
+
+    seeAllCards = async (token: string) => {
+        try {
+            if (!token) {
+                throw new CustomError(422, "O token precisa ser passado como Authorization no headers");
+            };
+
+            const client = this.tokenGenerator.verify(token);
+            if (!client) {
+                throw new CustomError(404, `Cliente não encontrado!`);
+            };
+            const id = client.id;
+            
+            const cards = await this.clientData.seeCards(id);
+            return cards;
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
         }

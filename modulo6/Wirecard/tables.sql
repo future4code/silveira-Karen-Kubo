@@ -14,6 +14,14 @@ CREATE TABLE Wirecard_Card (
     cvv VARCHAR(255) NOT NULL,    
     FOREIGN KEY (card_holder_id) REFERENCES Wirecard_Client(id)
 );
+CREATE TABLE Wirecard_Card_Management (
+    card_holder_id VARCHAR(255) NOT NULL,
+    card_holder_name VARCHAR(255) NOT NULL,
+    number VARCHAR(255) UNIQUE NOT NULL,
+    expiration_date VARCHAR(255) NOT NULL,
+    cvv VARCHAR(255) NOT NULL,    
+    FOREIGN KEY (card_holder_id) REFERENCES Wirecard_Client(id)
+);
 CREATE TABLE Wirecard_Payment (
     client_id VARCHAR(255) NOT NULL,
     amount INT NOT NULL,

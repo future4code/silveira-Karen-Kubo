@@ -6,6 +6,7 @@ import { Card } from './../Model/Card';
 export class ClientData extends BaseDatabase {
     private tableNameClient = "Wirecard_Client";
     private tableNameCard = "Wirecard_Card";
+    private tableNameCardManagement = "Wirecard_Card_Management";
 
     createClient =async (client:Client) => {
         try {
@@ -33,6 +34,34 @@ export class ClientData extends BaseDatabase {
                 expiration_date: card.getExpirationDate(),
                 cvv: card.getCVV()
             })
+            
+        } catch (error:any) {
+            throw new CustomError(400, error.sqlMessage||error.message)
+        }
+    }
+
+    createCardManagement = async (card:Card) => {
+        try {
+            await ClientData.connection(this.tableNameCardManagement)
+            .insert({
+                card_holder_id: card.getCardHolderId(),
+                card_holder_name: card.getCardHolderName(),
+                number: card.getCard(),
+                expiration_date: card.getExpirationDate(),
+                cvv: card.getCVV()
+            })
+            
+        } catch (error:any) {
+            throw new CustomError(400, error.sqlMessage||error.message)
+        }
+    }
+
+    seeCards = async(card_holder_id:string) => {
+        try {
+            const cards = await ClientData.connection(this.tableNameCardManagement)
+            .select()
+            .where({card_holder_id});
+            return cards;
             
         } catch (error:any) {
             throw new CustomError(400, error.sqlMessage||error.message)
