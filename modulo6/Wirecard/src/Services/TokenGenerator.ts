@@ -33,6 +33,6 @@ export interface AuthenticationData {
   id: string,
   name?:string,
   card?: string,
-  expiration_date?:Date,
-  cvv?:number
+  expiration_date?:string,
+  cvv?:string
 };

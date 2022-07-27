@@ -3,19 +3,17 @@ CREATE TABLE Wirecard_Client (
     id VARCHAR(255) PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    cpf INT UNIQUE NOT NULL,
+    cpf VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
-
 CREATE TABLE Wirecard_Card (
     card_holder_id VARCHAR(255) NOT NULL,
     card_holder_name VARCHAR(255) NOT NULL,
     number VARCHAR(255) UNIQUE NOT NULL,
-    expiration_date DATE NOT NULL,
-    cvv INT NOT NULL,    
+    expiration_date VARCHAR(255) NOT NULL,
+    cvv VARCHAR(255) NOT NULL,    
     FOREIGN KEY (card_holder_id) REFERENCES Wirecard_Client(id)
 );
-
 CREATE TABLE Wirecard_Payment (
     client_id VARCHAR(255) NOT NULL,
     amount INT NOT NULL,

@@ -9,7 +9,7 @@ export class ClientData extends BaseDatabase {
 
     createClient =async (client:Client) => {
         try {
-            await ClientData.connection()
+            await ClientData.connection(this.tableNameClient)
             .insert({
                 id: client.getId(),
                 name: client.getName(),
@@ -17,16 +17,15 @@ export class ClientData extends BaseDatabase {
                 cpf: client.getCPF(),
                 password: client.getPassword()
             })
-            .into(this.tableNameClient)
             
         } catch (error:any) {
-            throw new CustomError(400, error.sqlMessage)
+            throw new CustomError(400, error.sqlMessage||error.message)
         }
     }
 
     createCard = async (card:Card) => {
         try {
-            await ClientData.connection()
+            await ClientData.connection(this.tableNameCard)
             .insert({
                 card_holder_id: card.getCardHolderId(),
                 card_holder_name: card.getCardHolderName(),
@@ -34,10 +33,9 @@ export class ClientData extends BaseDatabase {
                 expiration_date: card.getExpirationDate(),
                 cvv: card.getCVV()
             })
-            .into(this.tableNameCard)
             
         } catch (error:any) {
-            throw new CustomError(400, error.sqlMessage)
+            throw new CustomError(400, error.sqlMessage||error.message)
         }
     }
 
@@ -84,14 +82,14 @@ export class ClientData extends BaseDatabase {
         }
     }
 
-    getClientByCPF = async (cpf:number) => {
+    getClientByCPF = async (cpf:string) => {
         try {
             const client = await ClientData.connection(this.tableNameClient)
             .select()
             .where({cpf})  
             return client[0];         
         } catch (error:any) {
-            throw new CustomError(400, error.sqlMessage)
+            throw new CustomError(400, error.sqlMessage||error.message)
         }
     }
 

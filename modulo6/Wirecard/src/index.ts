@@ -22,11 +22,13 @@ const clientController = new ClientController(
 
 app.post("/user/signup", clientController.signUp);
 app.post("/user/login", clientController.login);
-
+app.post("/user/card", clientController.createCard);
 //Pagamentos
 const transactionBusiness = new TransactionBusiness(
     new TransactionData(),
-    new TokenGenerator()
+    new TokenGenerator(),
+    new HashManager(),
+    new ClientData()
 );
 
 const transactionController = new TransactionController(

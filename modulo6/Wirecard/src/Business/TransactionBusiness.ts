@@ -2,40 +2,44 @@ import { CustomError } from '../Error/CustomError';
 import { InputCreateTransaction, Transaction, TYPE } from '../Model/Transaction';
 import { TransactionData } from './../Data/TransactionData';
 import { TokenGenerator } from './../Services/TokenGenerator';
+import { HashManager } from './../Services/HashManager';
+import { ClientData } from './../Data/ClientData';
 
 
 export class TransactionBusiness {
     constructor(
-        private transactionData:TransactionData,
-        private tokenGenerator:TokenGenerator
-    ){}
+        private transactionData: TransactionData,
+        private tokenGenerator: TokenGenerator,
+        private hashManager: HashManager,
+        private clientData:ClientData
+    ) { }
 
-    createPayment = async (input:InputCreateTransaction) => {
+    createPayment = async (input: InputCreateTransaction) => {
         try {
-            const {token, amount, type} = input;
-            if(!token) {
+            const { token, amount, type } = input;
+            if (!token) {
                 throw new CustomError(422, "O token precisa ser passado como Authorization no headers");
             };
 
-            if (!amount||!type) {
+            if (!amount || !type) {
                 throw new CustomError(422, "Amount e type precisam ser passados no body");
             };
 
-            if (isNaN(amount) || !Number.isInteger(amount) || amount<=0) {
+            if (isNaN(amount) || !Number.isInteger(amount) || amount <= 0) {
                 throw new CustomError(401, "Amount precisa ser um número inteiro maior que 0");
             };
 
-            if(type!== TYPE.CREDITCARD && type!==TYPE.BOLETO) {
+            if (type !== TYPE.CREDITCARD && type !== TYPE.BOLETO) {
                 throw new CustomError(400, `Type precisa ser informado como ${TYPE.BOLETO} ou ${TYPE.CREDITCARD}`);
             };
 
             const client = this.tokenGenerator.verify(token);
-            if(!client) {
+            if (!client) {
                 throw new CustomError(404, `Cliente não encontrado!`);
             };
 
             if (type === TYPE.BOLETO) {
-                const transaction = new Transaction (
+                const transaction = new Transaction(
                     client.id,
                     amount,
                     type
@@ -45,16 +49,25 @@ export class TransactionBusiness {
 
                 return transaction;
             } else {
-                const {name, card, expiration_date, cvv} = input;
+                const { name, card, expiration_date, cvv } = input;
                 if (!name || !card || !expiration_date || !cvv) {
                     throw new CustomError(401, `Para pagamentos do type ${TYPE.CREDITCARD}, você precisa informar o name, card, expiration_date e cvv como constam no cartão!`);
                 };
                 
-                if (name !== client.name || card !== client.card || expiration_date !== client.expiration_date || cvv !== client.cvv) {
+                const clientName = await this.clientData.getClientById(client.id);
+                const compareName = clientName.name;
+                
+                if (name !== compareName || card !== client.card || expiration_date !== client.expiration_date) {
                     throw new CustomError(422, `Credenciais do cartão inválidas! Pagamento não autorizado!`);
                 };
 
-                const transaction = new Transaction (
+                const verifyCVV = this.hashManager.compareHash(cvv, client.cvv)
+                console.log(verifyCVV)
+                if (!verifyCVV) {
+                    throw new CustomError(422, `Credenciais do cartão inválidas! Pagamento não autorizado!`);
+                }
+
+                const transaction = new Transaction(
                     client.id,
                     amount,
                     type,
@@ -64,28 +77,28 @@ export class TransactionBusiness {
                 await this.transactionData.createTransaction(transaction);
                 return transaction;
             }
-        } catch (error:any) {
+        } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
         }
     }
 
-    getPaymentsFromUser = async (token:string) => {
+    getPaymentsFromUser = async (token: string) => {
         try {
-           
-            if(!token) {
+
+            if (!token) {
                 throw new CustomError(422, "O token precisa ser passado como Authorization no headers");
             };
 
             const client = this.tokenGenerator.verify(token);
-            if(!client) {
+            if (!client) {
                 throw new CustomError(404, `Cliente não encontrado!`);
             };
 
             const transactions = await this.transactionData.getAllTransactionsFromUser(client.id);
 
             return transactions;
-        } catch (error:any) {
+        } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
-        }        
+        }
     }
 }

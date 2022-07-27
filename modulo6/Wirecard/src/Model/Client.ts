@@ -3,7 +3,7 @@ export class Client {
         private id:string,
         private name:string,
         private email:string,
-        private cpf:number,
+        private cpf:string,
         private password:string
     ){}
 
@@ -16,7 +16,7 @@ export class Client {
     public getEmail = ():string => {
         return this.email;
     };
-    public getCPF = ():number => {
+    public getCPF = ():string => {
         return this.cpf;
     };
     public getPassword = ():string => {
@@ -27,7 +27,7 @@ export class Client {
 export type InputSignUp = {
     name:string,
     email:string,
-    cpf:number,
+    cpf:string,
     password:string
 }
 

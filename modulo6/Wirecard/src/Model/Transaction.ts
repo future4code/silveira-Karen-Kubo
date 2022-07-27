@@ -31,6 +31,6 @@ export type InputCreateTransaction = {
     type:TYPE,
     name?:string,
     card?:string,
-    expiration_date?:Date,
-    cvv?:number
+    expiration_date?:string,
+    cvv?:string
 }

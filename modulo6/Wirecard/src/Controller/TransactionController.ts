@@ -21,7 +21,7 @@ export class TransactionController {
         }
         try {
             const data = await this.transactionBusiness.createPayment(input);
-            res.status(201).send(data);
+            res.status(201).send({Payment: data});
         } catch (error:any) {
             const {statusCode, message} = error;
             if (statusCode === 200) {
@@ -37,7 +37,7 @@ export class TransactionController {
 
         try {
             const data = await this.transactionBusiness.getPaymentsFromUser(token);
-            res.status(200).send(data);
+            res.status(200).send({Payments:data});
         } catch (error:any) {
             const {statusCode, message} = error;
             if (statusCode === 200) {

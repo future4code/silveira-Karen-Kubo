@@ -3,8 +3,8 @@ export class Card {
         private card_holder_id:string,
         private card_holder_name:string,
         private card:string,
-        private expiration_date:Date,
-        private cvv:number
+        private expiration_date:string,
+        private cvv:string
     ){}
 
     public getCardHolderId = ():string => {
@@ -16,10 +16,10 @@ export class Card {
     public getCard = ():string => {
         return this.card;
     };
-    public getExpirationDate = ():Date => {
+    public getExpirationDate = ():string => {
         return this.expiration_date;
     };
-    public getCVV = ():number => {
+    public getCVV = ():string => {
         return this.cvv;
     };
 }

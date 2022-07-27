@@ -27,8 +27,8 @@ export class ClientBusiness {
                 throw new CustomError(401, "Password precisa ter mais que 10 caracteres.")
             }
 
-            if (isNaN(cpf) || cpf.toString().length !== 11) {
-                throw new CustomError(401, "CPF é um número. Por favor o informe apenas com números.")
+            if (cpf.length !== 11) {
+                throw new CustomError(401, "Por favor, informe apenas os números do CPF.")
             }
 
             const verifyEmail = await this.clientData.getClientByEmail(email);
@@ -47,39 +47,61 @@ export class ClientBusiness {
                 cpf,
                 hashPassword
             );
-            console.log(client)
 
             await this.clientData.createClient(client);
-            
+
+            const token = this.tokenGenerator.generate({ id, name });
+            return token;
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message)
+        }
+    }
+
+    createCard = async (token: string) => {
+        try {
+            if (!token) {
+                throw new CustomError(422, "O token precisa ser passado como Authorization no headers");
+            };
+
+            const client = this.tokenGenerator.verify(token);
+            if (!client) {
+                throw new CustomError(404, `Cliente não encontrado!`);
+            };
+            const id = client.id;
+            const clientName = await this.clientData.getClientById(client.id);
+            const name = clientName.name;
             //cartao
             const generator = require('creditcard-generator')
             const [card] = await generator.GenCC();
 
             const today = new Date();
-            const day = today.getDay();
             const month = today.getMonth() + 1;
             const year = today.getFullYear() + 10;
-            const expiration_date = new Date(year, month, day);
+            const expiration_date = `${month}/${year}`
 
-            const cvv = Math.floor(Math.random() * (999 - 100 + 1) + 100);
-
+            const cvv = Math.floor(Math.random() * (999 - 100 + 1) + 100).toString();
+            const hashCVV = await this.hashManager.hash(cvv);
             const newCard = new Card(
                 id,
                 name,
                 card,
                 expiration_date,
-                cvv
+                hashCVV
             )
-            console.log(newCard)
             await this.clientData.createCard(newCard);
+            const generateToken = this.tokenGenerator.generate({ id: client.id, name:client.name, card:card, expiration_date:expiration_date, cvv:hashCVV });
 
-            const token = this.tokenGenerator.generate({ id, name, card, expiration_date, cvv });
+            const infoCard = new Card(
+                id,
+                name,
+                card,
+                expiration_date,
+                cvv
+            );
             const data = {
-                token,
-                newCard
-            }
-            
-
+                generateToken,
+                infoCard
+            };
             return data;
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
@@ -97,20 +119,23 @@ export class ClientBusiness {
                 throw new CustomError(404, `Usuário não encontrado!`);
             }
             const compare = await this.hashManager.compareHash(password, client.password);
-            if(!compare) {
+            if (!compare) {
                 throw new CustomError(404, `Credenciais inválidas`);
             }
-            
-            const token = this.tokenGenerator.generate({id: client.id});
+
+            const token = this.tokenGenerator.generate({ id: client.id });
 
             const card = await this.clientData.getCardByHolderId(client.id);
+            if (!card) {
+                return token;
+            } else {
+                const data = {
+                    token,
+                    card
+                };
 
-            const data = {
-                token,
-                card
-            };
-
-            return data;
+                return data;
+            }
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
         }
