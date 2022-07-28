@@ -1,5 +1,5 @@
 # WIRECARD
-![WireCard - Banco Digital Logo](https://i.postimg.cc/QjVG1TKj/Getter-5.png)
+
 [Documentação](https://documenter.getpostman.com/view/20352445/UzXPwwUs)
 
 Case de um projeto back-end simulando as funcionalidades de um banco digital: Abertura de uma conta no banco, criação do cartão de crédito e simulação de pagamentos (com cartão de crédito ou boleto)!
